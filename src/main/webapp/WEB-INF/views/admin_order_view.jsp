@@ -38,11 +38,11 @@ ul{
    
    body {
    font-family: 'Gowun Batang', serif;
-       color: #754F44;
    }
 a {
     color:#EC7357;
 }
+
 a:hover {
     text-decoration: none;
     color: #EC7357;
@@ -132,86 +132,14 @@ a:hover {
 			</ul>
 			</div>
 
-			<!-- 메인 -->
-			<div class="main-content container col-md-9">
-				<!-- 메인 네비바  -->
-				<ul class="nav justify-content-center navbar-dark">
-					<li class="nav-item"><a class="nav-link active" href="#">주문
-							확인 전</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">주문 확인</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">배송 준비중</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">배송 중</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">배송 완료</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">주문 모두보기</a></li>
-				</ul>
-				<!-- 주문관리 테이블 -->
-				<table class="table">
-					<thead>
-						<tr>
-							<th scope="col">선택</th>
-							<th scope="col">번호</th>
-							<th scope="col">유형</th>
-							<th scope="col">주문 일시</th>
-							<th scope="col">주문 번호</th>
-							<th scope="col">주문 상품</th>
-							<th scope="col">주문자 <br />(아이디)
-							</th>
-							<th scope="col">결제 금액</th>
-							<th scope="col">결제 상태</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<th scope="row"><input type="checkbox" value="check1"></th>
-							<td>{번호} c:forEach</td>
-							<td>{유형}</td>
-							<td>{주문일시}</td>
-							<td>{주문번호}</td>
-							<td><a href="order_view">{주문상품명} 외 {상품 개수} 건</a></td>
-							<td>{주문자 이름} <br /> {주문자 아이디}
-							</td>
-							<td>{주문 금액}원</td>
-							<td>{결제 상태}</td>
-
-						</tr>
-						<tr>
-							<th scope="row"><input type="checkbox" value="check1"></th>
-							<td>{번호}</td>
-							<td>{유형}</td>
-							<td>{주문일시}</td>
-							<td>{주문번호}</td>
-							<td><a href="order_view">{주문상품명} 외 {상품 개수} 건</a></td>
-							<td>{주문자 이름} <br /> {주문자 아이디}
-							</td>
-							<td>{주문 금액}원</td>
-							<td>{결제 상태}</td>
-
-						</tr>
-
-					</tbody>
-				</table>
-
-
-
-				<!-- 페이지 네비게이션 -->
-
-				<nav aria-label="Page navigation example">
-					<ul class="pagination justify-content-center">
-						<li class="page-item"><a class="page-link" href="#"
-							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-						</a></li>
-						<li class="page-item"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item"><a class="page-link" href="#"
-							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-						</a></li>
-					</ul>
-				</nav>
-
-			</div>
-		</div>
+		<!-- 메인 -->
+		<div class="main-content container col-md-9"></div>
 		
+		
+		
+		
+		</div>
+
 		<!-- 푸터 -->
 		
 		 <div class="footer01">

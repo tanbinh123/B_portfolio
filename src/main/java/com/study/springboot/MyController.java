@@ -24,4 +24,9 @@ public class MyController {
 		
 		return "admin_order";
 	}
+	
+	@RequestMapping("/order_view")
+	public String order_view() {
+		return "admin_order_view";
+	}
 }

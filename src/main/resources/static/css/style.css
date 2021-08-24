@@ -1,7 +1,21 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap');
+.container-fluid {
+	padding-left: 0px;
+	padding-right: 0px;
+	
+}
 
+#logo {
+	margin-left: 20px;
+	width: 20%;
+	height: 20%;
+}
 .navbar {
 		background-color: #FDD692;
+}
+
+ul > a {
+    color: #754F44;
 }
 body {
     background-color: #FBFFB9;
@@ -198,7 +212,6 @@ input[type=checkbox] {
 .menu-top {
     background-color: #2b3242;
     color: #dee2eb;
-    padding: 15px;
     left: 0px;
     top: 0px;
     width: 100%;
@@ -784,6 +797,11 @@ a:active {
 }
 .menu-top-home-fixed .logo img {
     margin-top: 0px;
+}
+
+li {
+
+	color: gray;
 }
 
 /* 
