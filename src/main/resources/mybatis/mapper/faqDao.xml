@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.springboot.dao.IFaqDao">
+
+
+<!-- FAQ 목록 -->
+
+<select id="faq_list">
+		select * from shopping_faq order by faq_idx desc
+</select>
+
+
+<!-- FAQ 보기 -->
+
+<select id="faq_view" resultType="com.study.springboot.dto.faqDto">
+		select * from shopping_faq where faq_idx = #{param1}
+</select>
+
+
+
+<!-- 관리자 전용 faq 작성 -->
+
+<insert id="faq_write"  parameterType="com.study.springboot.dto.faqDto">
+	insert to shopping_notice (faq_idx, faq_title, faq_name, faq_content)
+	values (shopping_faq_seq.nextval, #{param1}, #{param2}, #{param3})
+</insert>
+
+</mapper>

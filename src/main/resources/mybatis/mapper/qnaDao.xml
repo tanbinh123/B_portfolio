@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.springboot.dao.IQnaDao"> 
+
+
+			<!-- 묻고답하기 목록 -->
+		<select id="qna_list" resultType="com.study.springboot.dto.qnaDto"> 
+		select * from shopping_qna order by qna_idx desc 
+	</select>
+	
+	<!-- 비밀번호 체크 SQL문  -->
+	<select id="qna_pwCheck" resultType="_int">
+		select COUNT(*) from shopping_qna where qna_idx=#{param1} and qna_pw=#{param2}
+	</select>
+	
+	<!-- 묻고답하기 보기 -->
+	<select id="contentView" resultType="com.study.springboot.dto.qnaDto">
+		select * from shopping_qna where qna_idx=#{param1}
+	</select>
+	
+	<!-- 묻고답하기 작성 -->
+	<insert id="qna_write" parameterType="com.study.springboot.dto.qnaDto"> 
+		insert into shopping_qna values(shopping_qna_seq.nextval, #{qna_title}, #{qna_name}, #{qna_pw}, #{qna_content}, sysdate)
+	</insert>
+	
+	
+	<!-- 묻고답하기 삭제 -->
+	<delete id="qna_delete">
+		delete from shopping_qna where qna_idx=#{param1}
+	</delete>
+	
+	<!-- 묻고답하기 수정 -->
+	<update id="qna_modify">
+		update shopping_qna set qna_title=#{param2}, qna_name=#{param3}, qna_pw=#{param4}, qna_content=#{param5} where qna_idx=#{param1}
+	</update>
+	
+
+</mapper>

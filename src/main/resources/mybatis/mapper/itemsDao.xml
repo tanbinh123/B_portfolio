@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.springboot.dao.IItemsDao"> 
+
+	
+	<!-- 주문내역 목록 <관리자전용>-->
+	<select id="items_list">
+			select * from shopping_items order by items_idx desc
+	</select>
+	
+	
+	<!-- 사용자별 주문내역 목록 -->
+		<select id="items_list" resultType="com.study.springboot.dto.itemsDto">
+			select * from shopping_items where items_member_idx = #{param1}
+	</select>
+	
+	<!-- 주문내역 보기 -->
+	
+	<select id="items_view" resultType="com.study.springboot.dto.itemsDto">
+			select * from shopping_items where items_idx = #{param1}
+	</select>
+	
+
+
+</mapper>

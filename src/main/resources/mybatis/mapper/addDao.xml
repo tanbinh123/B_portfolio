@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.springboot.dao.IAddDao"> 
+
+
+	<!-- 상품등록 -->
+	<insert id="add_item" parameterType="com.study.springboot.dto.addDto"> 
+		insert into shopping_add(
+		add_idx, add_title, add_price, add_content, add_keyword ) 
+			values (shopping_add_seq.nextval, #{add_title}, #{add_price}, #{add_content}, #{add_keyword})
+	</insert>
+	
+	<!-- 상품목록 -->
+	<select id="add_list">
+		select * from shopping_add order by add_idx desc
+	</select>
+	
+
+</mapper>
