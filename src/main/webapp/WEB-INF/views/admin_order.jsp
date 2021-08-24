@@ -39,6 +39,7 @@ ul{
    body {
    font-family: 'Gowun Batang', serif;
        color: #754F44;
+       font-weight:bold;
    }
 a {
     color:#EC7357;
@@ -52,6 +53,7 @@ a:hover {
 	margin-top:10px;
 	padding: 10px;
 }
+
 </style>
 
 </head>

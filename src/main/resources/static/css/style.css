@@ -4,7 +4,12 @@
 	padding-right: 0px;
 	
 }
-
+.table1 {
+	padding: 20px;
+}
+.sidebar-nav {
+	padding: 10px;
+}
 #logo {
 	margin-left: 20px;
 	width: 20%;
@@ -22,6 +27,7 @@ body {
     font-family: 'Gowun Batang', serif;
     font-size: 18px;
     color: #754F44;
+    font-weight:bold;
 }
 h1,h2,h3,h4,h5,h6 {
     color: #2b3242;

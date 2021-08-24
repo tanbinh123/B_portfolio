@@ -45,6 +45,7 @@ a:hover {
 .footer02 {
   background-color:#754F44; color: #FBFFB9;
   text-align: center; font-size: 14px;
+    font-weight:normal;
   
   padding-bottom: 100px;
 }

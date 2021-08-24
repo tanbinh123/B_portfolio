@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
-	
 
-  <link rel="stylesheet" href="/css/footer.css">
-    <link rel="stylesheet" href="/css/style.css">
+
+
+<link rel="stylesheet" href="/css/footer.css">
+<link rel="stylesheet" href="/css/style.css">
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,26 +31,55 @@
 <title>주문관리</title>
 
 <style>
-ul{
-   list-style:none;
-   }
-   @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap');
-   
-   body {
-   font-family: 'Gowun Batang', serif;
-   }
+ul {
+	list-style: none;
+}
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap')
+	;
+
+body {
+	font-family: 'Gowun Batang', serif;
+	font-weight: bold;
+}
+select {
+margin-left: 5px;
+}
 a {
-    color:#EC7357;
+	color: #EC7357;
 }
 
 a:hover {
-    text-decoration: none;
-    color: #EC7357;
+	text-decoration: none;
+	color: #EC7357;
 }
 
 .sidebar-nav {
-	margin-top:10px;
+	margin-top: 10px;
 	padding: 10px;
+}
+
+h6 {
+	font-weight: bold;
+}
+
+.table1 {
+	padding: 20px;
+	border: none;
+}
+
+.table-1 {
+	border: 1px solid #754F44;
+}
+
+.tablehead {
+	background-color: #FDD692;
+}
+
+.table {
+	color: 754F44;
+	font-weight: bold;
 }
 </style>
 
@@ -60,7 +89,8 @@ a:hover {
 	<!-- 네비바 -->
 	<div id="Header" class="">
 		<nav class="navbar navbar-expand-md navbar-light">
-			<a class="navbar-brand" href="#"><img id="logo" src="/img/logo.png"></a>
+			<a class="navbar-brand" href="#"><img id="logo"
+				src="/img/logo.png"></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
 				aria-expanded="false" aria-label="Toggle navigation">
@@ -107,52 +137,139 @@ a:hover {
 	<div id="content" class="d-flex flex-row bd-highlight mb-3">
 
 
-			<!-- 사이드바 -->
-			<div id="sidebar sidebar-wrapper col-md-3" class="ml-3">
-				<ul class="border border-warning sidebar-nav pr-5">
+		<!-- 사이드바 -->
+		<div id="sidebar sidebar-wrapper col-md-3" class="ml-3">
+			<ul class="border border-warning sidebar-nav pr-5">
 				<li class="text-center sidebar-brand">MENU</li>
 				<li>주문 관리
 					<ul>
-						<li>　<a href="#">주문 목록</a></li>
+						<li><a href="#">주문 목록</a></li>
 					</ul>
 				</li>
 				<li>상품 관리
 					<ul>
-						<li>　<a href="#">상품 목록</a></li>
-						<li>　<a href="#">상품 등록</a></li>
+						<li><a href="#">상품 목록</a></li>
+						<li><a href="#">상품 등록</a></li>
 					</ul>
 				</li>
 				<li>커뮤니티 관리
 					<ul>
-						<li>　<a href="#">공지사항 관리</a></li>
-						<li>　<a href="#">묻고답하기 관리</a></li>
-						<li>　<a href="#">상품평 관리</a></li>
+						<li><a href="#">공지사항 관리</a></li>
+						<li><a href="#">묻고답하기 관리</a></li>
+						<li><a href="#">상품평 관리</a></li>
 					</ul>
 				</li>
 			</ul>
-			</div>
-
-		<!-- 메인 -->
-		<div class="main-content container col-md-9"></div>
-		
-		
-		
-		
 		</div>
 
-		<!-- 푸터 -->
+		<!-- 메인 -->
 		
-		 <div class="footer01">
-  </div>
-  <div class="footer02">
-    <div class="address">
-      회사 : 노원이젠, 주소 : 서울시 노원구 상계동 화랑빌딩 4층, 대표 : 홍길동, <br>
-      고객지원 : 010-2222-3333, FAX : 070-888-5555, EMAIL : support@gmail.com, 사업자등록번호 : 100-02-00033, 통신판매업 : 제1111-경기-00000호
-    </div>
-    <div class="copy">
-      COPYRIGHT(C) 2021 NOWON_EZEN. ALL RIGHT RESERVED.
-    </div>
-  </div>
-  
+		<!-- 주문서 관리 테이블 -->
+		<div class="main-content container col-md-9 m-5">
+			<div class="justify-content-center">
+				<h4>주문서 관리</h4>
+				<table class="table table-borderless table-1 text-center">
+					<tr>
+						<td class="table1">주문일: {주문일}</td>
+						<td class="table1">주문고객: {고객명} ID: {고객ID}</td>
+						<td class="table1">주문번호: {주문번호}</td>
+					</tr>
+					<tr>
+						<td class="table1">결제상태: <select name="pay">
+								<option value="입금전">입금전</option>
+								<option value="결제완료">결제완료</option>
+						</select></td>
+						<td class="table1">주문처리상태: <select name="pay">
+								<option value="주문 확인 전">주문 확인 전</option>
+								<option value="배송 준비 중">배송 준비 중</option>
+								<option value="배송 중">배송 중</option>
+								<option value="배송완료">배송완료</option>
+						</select></td>
+						</td>
+						<td class="table1"><input type="submit" value="   상태 변경   "></td>
+					</tr>
+					<tr>
+						<td class="table1"></td>
+						<td class="table1"><input type="text" placeholder="운송장 번호 입력">
+							<input type="button" value=" 배송 조회 "></td>
+						<td class="table1"><input type="button" value="주문 취소하기"></td>
+					</tr>
+
+				</table>
+			</div>
+			
+			<!-- 주문상품목록 테이블 -->
+			<div class="">
+				<br>
+				<h4>주문 상품</h4>
+				<table class="table">
+					<thead>
+						<tr class="tablehead">
+							<th scope="col">번호</th>
+							<th scope="col"></th>
+							<th scope="col">상품정보</th>
+							<th scope="col">수량</th>
+							<th scope="col">합계금액</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">2</th>
+							<td>image삽입</td>
+							<td>{상품명}</td>
+							<td>{개수}개</td>
+							<td>{상품가격}*{개수}원</td>
+						</tr>
+						<tr>
+							<th scope="row">1</th>
+							<td>image삽입</td>
+							<td>{상품명}</td>
+							<td>{개수}개</td>
+							<td>{상품가격}*{개수}원</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			
+			<!-- 주문자 정보 테이블 -->
+			<div class="">
+				<br>
+				<h4>배송 정보</h4>
+				<h6>주문자 정보</h6>
+
+				<table class="table">
+					<tbody>
+						<tr>
+							<th scope="row" class="text-center">이름</th>
+							<td><input type="text" value="{주문자명}" readonly></td>
+						</tr>
+						<tr>
+							<th scope="row" class="text-center">이메일주소</th>
+							<td><input type="text" value="{이메일주소}" readonly></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+
+
+
+	</div>
+
+	<!-- 푸터 -->
+
+	<div class="footer01"></div>
+	<div class="footer02">
+		<div class="address">
+			회사 : 노원이젠, 주소 : 서울시 노원구 상계동 화랑빌딩 4층, 대표 : 홍길동, <br> 고객지원 :
+			010-2222-3333, FAX : 070-888-5555, EMAIL : support@gmail.com, 사업자등록번호
+			: 100-02-00033, 통신판매업 : 제1111-경기-00000호
+		</div>
+		<div class="copy">COPYRIGHT(C) 2021 NOWON_EZEN. ALL RIGHT
+			RESERVED.</div>
+	</div>
+
 </body>
 </html>
