@@ -1,8 +1,13 @@
-﻿body {
-    background-color: #f0f1f4;
-    font-family: 'Open Sans', sans-serif;
+﻿@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap');
+
+.navbar {
+		background-color: #FDD692;
+}
+body {
+    background-color: #FBFFB9;
+    font-family: 'Gowun Batang', serif;
     font-size: 18px;
-    color: #737b8a;
+    color: #754F44;
 }
 h1,h2,h3,h4,h5,h6 {
     color: #2b3242;
@@ -20,11 +25,11 @@ a:focus {
     text-decoration: none;
 }
 a {
-    color: #0043dc;
+    color:#754F44;
 }
 a:hover {
     text-decoration: none;
-    color: #487bef;
+    color: #754F44;
 }
 .margin-top {
     margin-top: 20px;

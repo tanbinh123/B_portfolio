@@ -18,4 +18,10 @@ public class MyController {
 		
 		return "index";
 	}
+	
+	@RequestMapping("/admin_order")
+	public String admin_order() {
+		
+		return "admin_order";
+	}
 }
