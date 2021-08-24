@@ -7,15 +7,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MyController3 {
 
 	
-	@RequestMapping("/")
-	public String root () {
-		
-		return "redirect:index";
-	}
-	
-	@RequestMapping("/index")
-	public String index () {
-		
-		return "index";
-	}
+
 }
