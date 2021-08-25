@@ -76,7 +76,7 @@ a:hover {
 						aria-haspopup="true" aria-expanded="false"> 주문관리 </a>
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="#">주문목록</a>
+							<a class="dropdown-item" href="admin_order">주문목록</a>
 						</div></li>
 				</ul>
 				<ul class="navbar-nav m-auto">
@@ -115,7 +115,7 @@ a:hover {
 				<li class="text-center sidebar-brand">MENU</li>
 				<li>주문 관리
 					<ul>
-						<li>　<a href="#">주문 목록</a></li>
+						<li>　<a href="admin_order">주문 목록</a></li>
 					</ul>
 				</li>
 				<li>상품 관리
@@ -152,7 +152,6 @@ a:hover {
 						<tr>
 							<th scope="col">선택</th>
 							<th scope="col">번호</th>
-							<th scope="col">유형</th>
 							<th scope="col">주문 일시</th>
 							<th scope="col">주문 번호</th>
 							<th scope="col">주문 상품</th>
@@ -166,7 +165,6 @@ a:hover {
 						<tr>
 							<th scope="row"><input type="checkbox" value="check1"></th>
 							<td>{번호} c:forEach</td>
-							<td>{유형}</td>
 							<td>{주문일시}</td>
 							<td>{주문번호}</td>
 							<td><a href="order_view">{주문상품명} 외 {상품 개수} 건</a></td>
@@ -179,7 +177,6 @@ a:hover {
 						<tr>
 							<th scope="row"><input type="checkbox" value="check1"></th>
 							<td>{번호}</td>
-							<td>{유형}</td>
 							<td>{주문일시}</td>
 							<td>{주문번호}</td>
 							<td><a href="order_view">{주문상품명} 외 {상품 개수} 건</a></td>

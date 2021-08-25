@@ -43,6 +43,9 @@ body {
 	font-family: 'Gowun Batang', serif;
 	font-weight: bold;
 }
+td > input {
+	margin-bottom:5px;
+}
 select {
 margin-left: 5px;
 }
@@ -81,6 +84,10 @@ h6 {
 	color: 754F44;
 	font-weight: bold;
 }
+#goto {
+	width: 150%;
+	height: 150%;
+}
 </style>
 
 </head>
@@ -104,7 +111,7 @@ h6 {
 						aria-haspopup="true" aria-expanded="false"> 주문관리 </a>
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="#">주문목록</a>
+							<a class="dropdown-item" href="admin_order">주문목록</a>
 						</div></li>
 				</ul>
 				<ul class="navbar-nav m-auto">
@@ -143,7 +150,7 @@ h6 {
 				<li class="text-center sidebar-brand">MENU</li>
 				<li>주문 관리
 					<ul>
-						<li><a href="#">주문 목록</a></li>
+						<li><a href="admin_order">주문 목록</a></li>
 					</ul>
 				</li>
 				<li>상품 관리
@@ -186,13 +193,7 @@ h6 {
 								<option value="배송완료">배송완료</option>
 						</select></td>
 						</td>
-						<td class="table1"><input type="submit" value="   상태 변경   "></td>
-					</tr>
-					<tr>
-						<td class="table1"></td>
-						<td class="table1"><input type="text" placeholder="운송장 번호 입력">
-							<input type="button" value=" 배송 조회 "></td>
-						<td class="table1"><input type="button" value="주문 취소하기"></td>
+						<td class="table1"><input type="submit" value="   상태 변경   "><br><input type="button" value="주문 취소하기"></td>
 					</tr>
 
 				</table>
@@ -251,6 +252,7 @@ h6 {
 					</tbody>
 				</table>
 			</div>
+			<div class="d-flex justify-content-center"><a href="admin_order"><input id="goto" type="button" value="목록으로"></a></div>
 
 		</div>
 
