@@ -1,4 +1,16 @@
 --DB설계
+-- 관리자 아이디 인덱스, 아이디, 비밀번호
+drop table shopping_admin;
+create table shopping_admin(
+    admin_idx number(4) primary key,
+    admin_id    varchar2(20),
+    admin_pw    varchar2(20)
+);
+
+drop sequence shopping_admin_seq;
+create sequence shopping_admin_seq;
+
+
 -- 회원가입
 ​-- 인덱스, 아이디, 비밀번호, 이름, 이메일
 drop table shopping_member;

@@ -96,7 +96,7 @@ h6 {
 	<!-- 네비바 -->
 	<div id="Header" class="">
 		<nav class="navbar navbar-expand-md navbar-light">
-			<a class="navbar-brand" href="#"><img id="logo"
+			<a class="navbar-brand" href=""><img id="logo"
 				src="/img/logo.png"></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
@@ -111,7 +111,7 @@ h6 {
 						aria-haspopup="true" aria-expanded="false"> 주문관리 </a>
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="admin_order">주문목록</a>
+							<a class="dropdown-item disabled" href="admin_order">주문목록</a>
 						</div></li>
 				</ul>
 				<ul class="navbar-nav m-auto">
@@ -121,8 +121,8 @@ h6 {
 						aria-haspopup="true" aria-expanded="false"> 상품관리 </a>
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="#">상품목록</a> <a
-								class="dropdown-item" href="#">상품등록</a>
+							<a class="dropdown-item disabled" href="#">상품목록</a> <a
+								class="dropdown-item disabled" href="#">상품등록</a>
 						</div></li>
 				</ul>
 				<ul class="navbar-nav m-auto">
@@ -132,8 +132,8 @@ h6 {
 						aria-haspopup="true" aria-expanded="false"> 커뮤니티 관리 </a>
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="#">공지사항 관리</a> <a
-								class="dropdown-item" href="#">묻고답하기 관리</a> <a
+							<a class="dropdown-item disabled" href="#">공지사항 관리</a> <a
+								class="dropdown-item disabled" href="#">묻고답하기 관리</a> <a
 								class="dropdown-item" href="#">상품평 관리</a>
 						</div></li>
 				</ul>
@@ -141,123 +141,38 @@ h6 {
 		</nav>
 	</div>
 
-	<div id="content" class="d-flex flex-row bd-highlight mb-3">
+<div id="blank-box" class="blank-box"></div>
 
-
-		<!-- 사이드바 -->
-		<div id="sidebar sidebar-wrapper col-md-3" class="ml-3">
-			<ul class="border border-warning sidebar-nav pr-5">
-				<li class="text-center sidebar-brand">MENU</li>
-				<li>주문 관리
-					<ul>
-						<li><a href="admin_order">주문 목록</a></li>
-					</ul>
-				</li>
-				<li>상품 관리
-					<ul>
-						<li><a href="#">상품 목록</a></li>
-						<li><a href="#">상품 등록</a></li>
-					</ul>
-				</li>
-				<li>커뮤니티 관리
-					<ul>
-						<li><a href="#">공지사항 관리</a></li>
-						<li><a href="#">묻고답하기 관리</a></li>
-						<li><a href="#">상품평 관리</a></li>
-					</ul>
-				</li>
-			</ul>
-		</div>
-
-		<!-- 메인 -->
-		
-		<!-- 주문서 관리 테이블 -->
-		<div class="main-content container col-md-9 m-5">
-			<div class="justify-content-center">
-				<h4>주문서 관리</h4>
-				<table class="table table-borderless table-1 text-center">
-					<tr>
-						<td class="table1">주문일: {주문일}</td>
-						<td class="table1">주문고객: {고객명} ID: {고객ID}</td>
-						<td class="table1">주문번호: {주문번호}</td>
-					</tr>
-					<tr>
-						<td class="table1">결제상태: <select name="pay">
-								<option value="입금전">입금전</option>
-								<option value="결제완료">결제완료</option>
-						</select></td>
-						<td class="table1">주문처리상태: <select name="pay">
-								<option value="주문 확인 전">주문 확인 전</option>
-								<option value="배송 준비 중">배송 준비 중</option>
-								<option value="배송 중">배송 중</option>
-								<option value="배송완료">배송완료</option>
-						</select></td>
-						</td>
-						<td class="table1"><input type="submit" value="   상태 변경   "><br><input type="button" value="주문 취소하기"></td>
-					</tr>
-
-				</table>
-			</div>
-			
-			<!-- 주문상품목록 테이블 -->
-			<div class="">
-				<br>
-				<h4>주문 상품</h4>
-				<table class="table">
-					<thead>
-						<tr class="tablehead">
-							<th scope="col">번호</th>
-							<th scope="col"></th>
-							<th scope="col">상품정보</th>
-							<th scope="col">수량</th>
-							<th scope="col">합계금액</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<th scope="row">2</th>
-							<td>image삽입</td>
-							<td>{상품명}</td>
-							<td>{개수}개</td>
-							<td>{상품가격}*{개수}원</td>
-						</tr>
-						<tr>
-							<th scope="row">1</th>
-							<td>image삽입</td>
-							<td>{상품명}</td>
-							<td>{개수}개</td>
-							<td>{상품가격}*{개수}원</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			
-			
-			<!-- 주문자 정보 테이블 -->
-			<div class="">
-				<br>
-				<h4>배송 정보</h4>
-				<h6>주문자 정보</h6>
-
-				<table class="table">
-					<tbody>
-						<tr>
-							<th scope="row" class="text-center">이름</th>
-							<td><input type="text" value="{주문자명}" readonly></td>
-						</tr>
-						<tr>
-							<th scope="row" class="text-center">이메일주소</th>
-							<td><input type="text" value="{이메일주소}" readonly></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="d-flex justify-content-center"><a href="admin_order"><input id="goto" type="button" value="목록으로"></a></div>
-
-		</div>
-
-
+<!-- 로그인 섹션 -->
+	<div id="content" class="d-flex flex-row bd-highlight justify-content-center align-center">
+<div class="">
+    <form action="Admin-LoginAction" method="post" name="Admin-loginAction">
+        <table class="main1" style="text-align: center;">
+          <tr>
+            <td>
+              아이디<br>
+              비밀번호
+            </td>
+            <td>
+              <input type="text" id="admin_id" name="admin_id"><br>
+              <input type="password" id="admin_pw" name="admin_pw">
+            </td>
+            </tr>
+            <tr>
+            <td>
+              <button class="btn btn-primary" type="submit">로그인</button>
+              </td>
+              <td>
+             <!-- 사용자페이지 --> <a href="#"><button class="btn btn-secondary">사용자 페이지로</a>
+            </td>
+          </tr>
+        </table>
+        </form>
+</div>
 	</div>
+
+
+<div class="blank-box"></div>
 
 	<!-- 푸터 -->
 
