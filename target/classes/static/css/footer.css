@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+/* 초기화 */
+* {
+  margin: 0; padding: 0;
+}
+a {
+  text-decoration: none; color: #5a5a5a;
+}
+a:link {
+  /* text-decoration: none; */
+  color: #5a5a5a;
+}
+a:hover {
+  /* text-decoration: none; */
+  color: #5a5a5a;
+}
+
+
+
+
+
+/* 푸터 시작 */
+.footer01 {
+	margin-top: 100px;
+  text-align: center; padding-top: 50px;
+  background-color: #754F44;
+}
+.footer01 a {
+  color: #FBFFB9; font-size: 14px; margin: 0 8px 0 8px;
+}
+.footer01 ul, .footer01 li {
+  display: inline-block;
+}
+.footer01 li+li::before {
+  content: ""; display: inline-block;
+  width: 1px; height: 15px;
+  margin: 0 5px 0 2px;
+  background-color: rgba(192, 186, 186, 0.333);
+  vertical-align: -1px;
+}
+.footer01 a:hover {
+  text-decoration: none;
+}
+.footer02 {
+  background-color:#754F44; color: #FBFFB9;
+  text-align: center; font-size: 14px;
+    font-weight:normal;
+  
+  padding-bottom: 100px;
+}
+.footer02 ul {
+  margin: 0; padding: 20px 0 40px 0;
+}
+.footer02 li {
+  padding: 0 3px;
+}

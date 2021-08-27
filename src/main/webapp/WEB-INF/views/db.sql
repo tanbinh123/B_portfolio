@@ -17,7 +17,7 @@ drop table shopping_member;
 create table shopping_member(
     member_idx       number(4) primary key,
     member_id      varchar2(20),
-    member_pw     varchar2(20),
+    member_pw     varchar2(20),99999999999999999999999999999998oikkkkk
     member_name   varchar2(20),
     member_email   varchar2(100)
 );
@@ -45,12 +45,13 @@ drop sequence shopping_notice_seq;
 create sequence shopping_notice_seq;   
    
 --주문내역
--- 인덱스, 상품명, 상품가격, 상품 갯수, 상품배송상태,회원이름,회원 이메일 (이름, 이메일 두가지는 관리자 화면에서 사용), 회원인덱스 연동
+-- 인덱스, 상품 이미지, 상품명, 상품가격, 상품 갯수, 상품배송상태,회원이름,회원 이메일 (이름, 이메일 두가지는 관리자 화면에서 사용), 회원인덱스 연동
 -- items_status 배송완료 시 상품평 작성 가능 연동
 -- 1 = 배송준비 2 = 배송중 3 = 배송완료
 drop table shopping_items;
 create table shopping_items(
     items_idx       number(4) primary key,
+    items_img       varchar2(255),
     items_title     varchar2(100),
     items_price     varchar2(100),
     items_numb      number(4),
@@ -64,10 +65,11 @@ drop sequence shopping_items_seq;
 create sequence shopping_items_seq;
 
 --장바구니
--- 인덱스, 상품명, 상품가격, 회원인덱스 연동
+-- 인덱스, 상품이미지, 상품명, 상품가격, 회원인덱스 연동
 drop table shopping_cartItems;
 create table shopping_cartItems(
     citems_idx       number(4) primary key,
+    citems_img    varchar2(255),
     citems_title     varchar2(100),
     citems_price     varchar2(100),
     citems_member_idx    number(4)
@@ -126,7 +128,7 @@ create sequence shopping_qna_seq;
 
 
 --상품 등록 (관리자 전용)
---인덱스, 상품명, 상품가격, 상품설명, 상품수량, 상품키워드
+--인덱스, 상품명, 상품가격, 상품설명, 상품수량, 상품키워드, 상품 이미지
 
 drop table shopping_add;
 create table shopping_add(
@@ -135,7 +137,8 @@ create table shopping_add(
     add_price   varchar2(100),
     add_content varchar2(100),
     add_count   number(4),
-    add_keyword varchar2(100)
+    add_keyword varchar2(100),
+    add_img    varchar2(255)
 );
 
 --상품등록 시퀀스

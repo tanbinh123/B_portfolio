@@ -1,5 +1,6 @@
 package com.study.springboot;
 
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ import com.study.springboot.service.AdminService;
 
 @Controller
 public class MyController {
-	
+
 	@Autowired
 	private AdminService adminService;
 	
@@ -87,4 +88,5 @@ public class MyController {
 		
 		return "redirect:admin";  
 	}
+	
 }
