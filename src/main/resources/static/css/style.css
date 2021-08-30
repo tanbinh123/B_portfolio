@@ -4,7 +4,17 @@
 	padding-right: 0px;
 	
 }
-
+#notice_write_div {
+	margin-top:20px;
+	margin-bottom:20px;
+}
+#notice_write {
+	width: 70px;
+	height:38px;
+}
+.blank-box2 {
+	margin-top:10px;
+}
 .searchbar {
 	height:38px;
 }

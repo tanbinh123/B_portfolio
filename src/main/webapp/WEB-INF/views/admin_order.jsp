@@ -97,7 +97,7 @@ a:hover {
 						aria-haspopup="true" aria-expanded="false"> 커뮤니티 관리 </a>
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="#">공지사항 관리</a> <a
+							<a class="dropdown-item" href="admin_notice">공지사항 관리</a> <a
 								class="dropdown-item" href="#">묻고답하기 관리</a> <a
 								class="dropdown-item" href="#">상품평 관리</a>
 						</div></li>
@@ -146,7 +146,7 @@ a:hover {
 				</li>
 				<li>커뮤니티 관리
 					<ul>
-						<li>　<a href="#">공지사항 관리</a></li>
+						<li>　<a href="admin_notice">공지사항 관리</a></li>
 						<li>　<a href="#">묻고답하기 관리</a></li>
 						<li>　<a href="#">상품평 관리</a></li>
 					</ul>
