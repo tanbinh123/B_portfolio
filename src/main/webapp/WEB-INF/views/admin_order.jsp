@@ -209,7 +209,15 @@ a:hover {
 
 					</tbody>
 				</table>
-
+      <div id="OrderSearch" class="">
+        <select name="search_menu" class="searchbar">
+          <option value="search_id">주문자ID</option>
+          <option value="search_name">상품명</option>
+          <option value="search_numb">주문번호</option>
+        </select>
+        <input type="search" id="search_content" name="search_content" class="searchbar">
+        <a href="#"><button id="searchButton" class="btn btn-secondary">검색</button></a>
+      </div>
 
 
 				<!-- 페이지 네비게이션 -->

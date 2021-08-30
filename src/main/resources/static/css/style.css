@@ -4,6 +4,15 @@
 	padding-right: 0px;
 	
 }
+
+.searchbar {
+	height:38px;
+}
+#searchButton {
+	width:70px;
+	text-align:center;
+}
+
 .blank-box {
 	margin-top:200px;
 }
