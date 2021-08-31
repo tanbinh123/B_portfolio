@@ -11,6 +11,10 @@ public class noticeDto {
     public String notice_title;
     public String notice_content;
     public Date notice_date;
+
+    
+
+    
     
     public noticeDto() {
     	
@@ -23,4 +27,6 @@ public class noticeDto {
 		this.notice_content = notice_content;
 		this.notice_date = notice_date;
 	}
+
+
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.study.springboot.dao.INoticeDao;
+import com.study.springboot.dto.PagingVO;
 import com.study.springboot.dto.noticeDto;
 
 @Service
@@ -42,4 +43,12 @@ public class NoticeService {
 		
 		return result;
 	}
+	public int countBoard() {
+		return noticeDao.countBoard();
+	}
+
+	public List<noticeDto> selectBoard(PagingVO vo) {
+		return noticeDao.selectBoard(vo);
+	}
+
 }

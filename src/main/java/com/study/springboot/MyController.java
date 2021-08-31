@@ -10,7 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.study.springboot.dao.IAdminDao;
+import com.study.springboot.dao.INoticeDao;
+import com.study.springboot.dto.PagingVO;
 import com.study.springboot.dto.noticeDto;
 import com.study.springboot.service.AdminService;
 import com.study.springboot.service.NoticeService;
@@ -23,9 +24,9 @@ public class MyController {
 	
 	@Autowired
 	private AdminService adminService;
-
+	
 	@Autowired
-	private IAdminDao adminDao;
+	private INoticeDao noticeDao;
 
 	@RequestMapping("/")
 	public String root() {
@@ -90,21 +91,27 @@ public class MyController {
 		return "redirect:admin";
 	}
 
-	/*
-	 * @RequestMapping("adminQna") public String adminQna() {
-	 * 
-	 * return "Qna_admin"; }
-	 * 
-	 * @RequestMapping("adminQnaView") public String adminQnaView () {
-	 * 
-	 * return "Qnacontent_admin"; }
-	 */
 
 	@RequestMapping("admin_notice")
 	public String adminNotice( HttpServletRequest request,
-			Model model) {
+			PagingVO vo, Model model
+			, @RequestParam(value="nowPage", required=false)String nowPage
+			, @RequestParam(value="cntPerPage", required=false)String cntPerPage){
 		List<noticeDto> notice_list = noticeService.notice_list();
 		request.setAttribute("notice_list", notice_list);
+		
+		int total = noticeDao.countBoard();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "10";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "10";
+		}
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("paging", vo);
+		model.addAttribute("notice_list", noticeDao.selectBoard(vo));
 		return "admin_notice";
 	}
 
@@ -160,4 +167,6 @@ public class MyController {
 			return "redirect:/admin_notice"; 
 		}
 	}
+	
+
 }

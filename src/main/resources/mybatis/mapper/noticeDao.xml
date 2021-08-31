@@ -26,4 +26,22 @@
 		update shopping_notice set notice_title=#{param2}, notice_content=#{param3}, notice_date= sysdate where notice_idx=#{param1}
 	</update>
 	
+<!-- 총 게시글 갯수 출력 -->
+<select id="countBoard" resultType="int">
+	SELECT COUNT(*) FROM shopping_notice
+</select>
+
+<!-- 페이징 처리 후 게시글 조회 -->
+<select id="selectBoard" resultType="com.study.springboot.dto.PagingVO">
+	SELECT * 
+		FROM (
+			SELECT ROWNUM RN, A.* 
+				FROM (
+						SELECT * 
+						FROM shopping_notice 
+						ORDER BY notice_idx DESC 
+						) A
+				)
+	WHERE RN BETWEEN #{start} AND #{end}
+</select>
 </mapper>

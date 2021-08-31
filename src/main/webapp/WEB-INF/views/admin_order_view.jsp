@@ -132,10 +132,30 @@ h6 {
 						aria-haspopup="true" aria-expanded="false"> 커뮤니티 관리 </a>
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="#">공지사항 관리</a> <a
+							<a class="dropdown-item" href="admin_notice">공지사항 관리</a> <a
 								class="dropdown-item" href="#">묻고답하기 관리</a> <a
 								class="dropdown-item" href="#">상품평 관리</a>
 						</div></li>
+												<li>
+						        <%
+		String admin_id = (String)session.getAttribute("admin_id");
+		//null체크
+		if( admin_id != null) 
+		{   //로그인 상태
+		%>
+			<div class="d-flex flex-row pl-3 justify-content-center "><span class="mt-2 pr-4">관리자님 환영합니다.</span><br><span class="mt-2"><a href="adminLogoutAction">LOGOUT</a></span></div>
+		<%		
+		}
+		else
+		{  //로그아웃 상태
+		%>
+			<div class="mt-2 ml-2"><span class=""><a href="admin">LOGIN</a></span></div>
+		<%
+		}
+		
+		
+		%>  
+		</li>
 				</ul>
 			</div>
 		</nav>
