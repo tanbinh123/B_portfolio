@@ -1,9 +1,14 @@
 package com.study.springboot.service;
 
+import java.util.HashMap;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.study.springboot.dao.INoticeDao;
 import com.study.springboot.dto.PagingVO;
@@ -43,12 +48,36 @@ public class NoticeService {
 		
 		return result;
 	}
-	public int countBoard() {
-		return noticeDao.countBoard();
-	}
-
-	public List<noticeDto> selectBoard(PagingVO vo) {
-		return noticeDao.selectBoard(vo);
-	}
-
+	
+	/*
+	 * public int countBoard() {
+	 * 
+	 * HashMap<String, Object> map = new HashMap<String, Object>();
+	 * HttpServletRequest request =
+	 * ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).
+	 * getRequest();
+	 * 
+	 * String keyword = request.getParameter("keyword"); String searchType =
+	 * request.getParameter("searchType");
+	 * 
+	 * map.put("keyword", keyword); map.put("searchType", searchType);
+	 * 
+	 * 
+	 * 
+	 * return noticeDao.countBoard(); }
+	 * 
+	 * public List<noticeDto> selectBoard(PagingVO vo) { HashMap<String, Object> map
+	 * = new HashMap<String, Object>(); HttpServletRequest request =
+	 * ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).
+	 * getRequest();
+	 * 
+	 * String keyword = request.getParameter("keyword"); String searchType =
+	 * request.getParameter("searchType");
+	 * 
+	 * 
+	 * map.put("keyword", keyword); map.put("searchType", searchType);
+	 * 
+	 * return noticeDao.selectBoard(vo); }
+	 */
+	
 }

@@ -1,5 +1,6 @@
 package com.study.springboot;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -92,26 +93,28 @@ public class MyController {
 	}
 
 
-	@RequestMapping("admin_notice")
-	public String adminNotice( HttpServletRequest request,
+	@RequestMapping("/admin_notice")
+	public String admin_notice( HttpServletRequest request,
 			PagingVO vo, Model model
 			, @RequestParam(value="nowPage", required=false)String nowPage
-			, @RequestParam(value="cntPerPage", required=false)String cntPerPage){
-		List<noticeDto> notice_list = noticeService.notice_list();
-		request.setAttribute("notice_list", notice_list);
-		
-		int total = noticeDao.countBoard();
-		if (nowPage == null && cntPerPage == null) {
-			nowPage = "1";
-			cntPerPage = "10";
-		} else if (nowPage == null) {
-			nowPage = "1";
-		} else if (cntPerPage == null) { 
-			cntPerPage = "10";
-		}
-		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-		model.addAttribute("paging", vo);
-		model.addAttribute("notice_list", noticeDao.selectBoard(vo));
+			, @RequestParam(value="cntPerPage", required=false)String cntPerPage) throws Exception{
+//		List<noticeDto> notice_list = noticeService.notice_list();
+		/*
+		 * int total = noticeDao.countBoard(); model.addAttribute("searchType",
+		 * searchType); model.addAttribute("keyword", keyword);
+		 * 
+		 * HashMap<String, Object> map = new HashMap<String, Object>();
+		 * map.put(searchType, "searchType"); map.put(keyword, "keyword"); //
+		 * request.setAttribute("notice_list", notice_list);
+		 * 
+		 * 
+		 * System.out.println(searchType +" " + keyword); if (nowPage == null &&
+		 * cntPerPage == null) { nowPage = "1"; cntPerPage = "5"; } else if (nowPage ==
+		 * null) { nowPage = "1"; } else if (cntPerPage == null) { cntPerPage = "5"; }
+		 * vo = new PagingVO(total, Integer.parseInt(nowPage),
+		 * Integer.parseInt(cntPerPage)); model.addAttribute("paging", vo);
+		 * model.addAttribute("notice_list", noticeDao.selectBoard(vo));
+		 */
 		return "admin_notice";
 	}
 
@@ -167,6 +170,6 @@ public class MyController {
 			return "redirect:/admin_notice"; 
 		}
 	}
-	
+
 
 }

@@ -178,20 +178,20 @@ h6 {
 				<li class="text-center sidebar-brand">MENU</li>
 				<li>주문 관리
 					<ul>
-						<li><a href="admin_order">주문 목록</a></li>
+						<li><a href="admin_order">　주문 목록</a></li>
 					</ul>
 				</li>
 				<li>상품 관리
 					<ul>
-						<li><a href="#">상품 목록</a></li>
-						<li><a href="#">상품 등록</a></li>
+						<li><a href="#">　상품 목록</a></li>
+						<li><a href="#">　상품 등록</a></li>
 					</ul>
 				</li>
 				<li>커뮤니티 관리
 					<ul>
-						<li><a href="admin_notice">공지사항 관리</a></li>
-						<li><a href="#">묻고답하기 관리</a></li>
-						<li><a href="#">상품평 관리</a></li>
+						<li><a href="admin_notice">　공지사항 관리</a></li>
+						<li><a href="#">　묻고답하기 관리</a></li>
+						<li><a href="#">　상품평 관리</a></li>
 					</ul>
 				</li>
 			</ul>

@@ -3,7 +3,7 @@
 
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.ArrayList"%>
 
 <link rel="stylesheet" href="/css/footer.css">
@@ -21,6 +21,8 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
 	crossorigin="anonymous">
+
+	
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
@@ -31,12 +33,13 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
 	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 	crossorigin="anonymous"></script>
-	<script>
+<script>
 	function selChange() {
 		var sel = document.getElementById('cntPerPage').value;
-		location.href="admin_notice?nowPage=${paging.nowPage}&cntPerPage="+sel;
+		location.href = "admin_notice?nowPage=${paging.nowPage}&cntPerPage="
+				+ sel;
 	}
-	</script>
+</script>
 <title>주문관리</title>
 <style type="text/css">
 .pageli {
@@ -162,8 +165,8 @@ h6 {
 						if (admin_id != null) { //로그인 상태
 						%>
 						<div class="d-flex flex-row pl-3 justify-content-center ">
-							<span class="mt-2 pr-4">관리자님 환영합니다.</span><br>
-							<span class="mt-2"><a href="adminLogoutAction">LOGOUT</a></span>
+							<span class="mt-2 pr-4">관리자님 환영합니다.</span><br> <span
+								class="mt-2"><a href="adminLogoutAction">LOGOUT</a></span>
 						</div> <%
  } else { //로그아웃 상태
  %>
@@ -191,20 +194,20 @@ h6 {
 				<li class="text-center sidebar-brand">MENU</li>
 				<li>주문 관리
 					<ul>
-						<li><a href="admin_order">주문 목록</a></li>
+						<li><a href="admin_order">　주문 목록</a></li>
 					</ul>
 				</li>
 				<li>상품 관리
 					<ul>
-						<li><a href="#">상품 목록</a></li>
-						<li><a href="#">상품 등록</a></li>
+						<li><a href="#">　상품 목록</a></li>
+						<li><a href="#">　상품 등록</a></li>
 					</ul>
 				</li>
 				<li>커뮤니티 관리
 					<ul>
-						<li><a href="admin_notice">공지사항 관리</a></li>
-						<li><a href="#">묻고답하기 관리</a></li>
-						<li><a href="#">상품평 관리</a></li>
+						<li><a href="admin_notice">　공지사항 관리</a></li>
+						<li><a href="#">　묻고답하기 관리</a></li>
+						<li><a href="#">　상품평 관리</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -212,66 +215,128 @@ h6 {
 
 		<!-- 메인 -->
 		<div class="main-content container col-md-9">
-			<!-- 공지사항 검색 -->
-			<div id="noticeSearch" class="">
-				<select name="search_menu" class="searchbar">
-					<option value="search_title">제목</option>
-					<option value="search_content2">내용</option>
-					<option value="search_titleContent">제목+내용</option>
-				</select> <input type="search" id="search_content" name="search_content"
-					class="searchbar"> <a href="#"><button
-						id="searchButton" class="btn btn-secondary">검색</button></a>
-			</div>
-			<!-- 주문관리 테이블 -->
-				<table class="table">
-					<thead>
-						<tr>
-							<th scope="col">번호</th>
-							<th scope="col">제목</th>
-							<th scope="col">작성일</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="dto" items='${ notice_list }'>
-							<tr>
-								<td>${dto.notice_idx}</td>
-								<td><a
-									href="admin_notice_view?notice_idx=${ dto.notice_idx }">${dto.notice_title}</a></td>
-								<td><fmt:formatDate value="${ dto.notice_date }" pattern="yyyy.MM.dd"/></td>
 
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-				<!-- 페이지 네비게이션 -->
-		<select id="cntPerPage" name="sel" onchange="selChange()">
-			<option value="5"
-				<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5줄 보기</option>
-			<option value="10"
-				<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10줄 보기</option>
-			<option value="15"
-				<c:if test="${paging.cntPerPage == 15}">selected</c:if>>15줄 보기</option>
-			<option value="20"
-				<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20줄 보기</option>
+<form id="infoForm" action="admin_notice" method="get">
+	<input type="hidden" id="searchType" name="searchType" value="${ searchType }">
+</form>
+
+
+
+<div>
+
+	
+	<%-- <c:forEach begin="1" end="${pageNum}" var="num">
+  		<span>
+  			<a href="/board/listPage?num=${num}">${num}</a>
+		</span>
+	</c:forEach> --%>
+	
+	
+	<div>
+		<select id="searchType" name="searchType">
+		    <option value="title" <c:if test="${page.searchType eq 'title'}">selected</c:if>>제목</option>
+	        <option value="content" <c:if test="${page.searchType eq 'content'}">selected</c:if>>내용</option>
+		    <option value="title_content" <c:if test="${page.searchType eq 'title_content'}">selected</c:if>>제목+내용</option>
 		</select>
-	<div style="display: block; text-align: center;">		
-		<c:if test="${paging.startPage != 1 }">
-			<a href="/admin_notice?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
-		</c:if>
-		<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
-			<c:choose>
-				<c:when test="${p == paging.nowPage }">
-					<b>${p }</b>
-				</c:when>
-				<c:when test="${p != paging.nowPage }">
-					<a href="/admin_notice?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
-				</c:when>
-			</c:choose>
-		</c:forEach>
-		<c:if test="${paging.endPage != paging.lastPage}">
-			<a href="/admin_notice?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
-		</c:if>
+		
+		<input type="text" id="keyword" name="keyword" value="${page.keyword}"/>
+		
+		<button type="button" id="searchBtn">검색</button>
+		
 	</div>
+	
+</div>
+
+
+
+			<!-- 주문관리 테이블 -->
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">번호</th>
+						<th scope="col">제목</th>
+						<th scope="col">작성일</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="dto" items='${ list }'>
+						<tr>
+							<td>${dto.notice_idx}</td>
+							<td><a
+								href="admin_notice_view?notice_idx=${ dto.notice_idx }">${dto.notice_title}</a></td>
+							<td><fmt:formatDate value="${ dto.notice_date }"
+									pattern="yyyy.MM.dd" /></td>
+
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			<!-- 페이지 네비게이션 -->
+<%-- 			<select id="cntPerPage" name="sel" onchange="selChange()">
+				<option value="5"
+					<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5줄
+					보기</option>
+				<option value="10"
+					<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10줄
+					보기</option>
+				<option value="15"
+					<c:if test="${paging.cntPerPage == 15}">selected</c:if>>15줄
+					보기</option>
+				<option value="20"
+					<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20줄
+					보기</option>
+			</select> --%>
+			<div style="display: block; text-align: center;">
+			
+			
+				<c:if test="${page.prev}">
+		<span>[ <a href="/admin_notice?num=${page.startPageNum - 1}${page.searchTypeKeyword}">이전</a> ]</span>
+	</c:if>
+	
+	<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
+		<span>
+		
+			<c:if test="${select != num}">
+				<a href="/admin_notice?num=${num}${page.searchTypeKeyword}">${num}</a>
+			</c:if> 			
+			
+			<c:if test="${select == num}">
+				<b>${num}</b>
+			</c:if>
+	 			
+		</span>
+	</c:forEach>
+	
+	<c:if test="${page.next}">
+		<span>[ <a href="/admin_notice?num=${page.endPageNum + 1}${page.searchTypeKeyword}">다음</a> ]</span>
+	</c:if>
+			
+			
+	<%-- 			<c:if test="${paging.startPage != 1 }">
+					<a
+						href="/admin_notice?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}&searchType=${ searchType }&keyword${ keyword }">&lt;</a>
+				</c:if>
+				<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
+					var="p">
+					<c:choose>
+						<c:when test="${p == paging.nowPage }">
+							<b>${p }</b>
+						</c:when>
+						<c:when test="${p != paging.nowPage }">
+							<a
+								href="/admin_notice?nowPage=${p }&cntPerPage=${paging.cntPerPage}&searchType=${ searchType }&keyword${ keyword }"">${p }</a>
+						</c:when>
+					</c:choose>
+				</c:forEach>
+				<c:if test="${paging.endPage != paging.lastPage}">
+					<a
+						href="/admin_notice?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}&searchType=${ searchType }&keyword${ keyword }"">&gt;</a>
+				</c:if>
+				 --%>
+				
+				
+				
+			</div>
 			<div id="notice_write_div" class="d-flex justify-content-center">
 				<a href="admin_notice_write"><input id="notice_write"
 					type="button" value="글쓰기"></a>
@@ -296,4 +361,16 @@ h6 {
 	</div>
 
 </body>
+	
+<script>
+
+	document.getElementById("searchBtn").onclick = function () {
+		  
+		let searchType = document.getElementsByName("searchType")[0].value;
+		let keyword =  document.getElementsByName("keyword")[0].value;
+		
+		location.href = "/admin_notice?num=1" + "&searchType=" + searchType + "&keyword=" + keyword;
+	};
+</script>
+
 </html>
