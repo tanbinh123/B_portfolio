@@ -1,8 +1,7 @@
 package com.study.springboot.domain;
 
 public class Page {
-	private int start;
-	private int end;
+	
 	
 	
 	// 현재 페이지 번호
@@ -97,8 +96,6 @@ public class Page {
 			endPageNum = endPageNum_tmp;
 		}
 		
-		start = (num * postNum)-9;
-		end = num * postNum;
 		
 		prev = startPageNum == 1 ? false : true;
 		next = endPageNum * pageNumCnt >= count ? false : true;
@@ -109,7 +106,6 @@ public class Page {
 	
 	
 	// 검색 타입과 검색어
-	/*
 	private String searchTypeKeyword;	
 	
 	public void setSearchTypeKeyword(String searchType, String keyword) {
@@ -120,7 +116,6 @@ public class Page {
 			searchTypeKeyword = "&searchType=" + searchType + "&keyword=" + keyword;	
 		}		
 	}
-	*/
 	
 	public String getSearchTypeKeyword() {
 		

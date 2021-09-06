@@ -28,7 +28,7 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
 	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 	crossorigin="anonymous"></script>
-<title>상품평작성</title>
+<title>상품평관리</title>
 
 <style>
 ul{
@@ -145,7 +145,7 @@ html, body {height:100%;}
 						aria-haspopup="true" aria-expanded="false"> 커뮤니티 관리 </a>
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="admin_shopping_review">공지사항 관리</a> <a
+							<a class="dropdown-item" href="admin_notice">공지사항 관리</a> <a
 								class="dropdown-item" href="#">묻고답하기 관리</a> <a
 								class="dropdown-item" href="#">상품평 관리</a>
 						</div></li>
@@ -194,7 +194,7 @@ html, body {height:100%;}
 				</li>
 				<li>커뮤니티 관리
 					<ul>
-						<li>　<a href="admin_shopping_review">공지사항 관리</a></li>
+						<li>　<a href="admin_notice">공지사항 관리</a></li>
 						<li>　<a href="#">묻고답하기 관리</a></li>
 						<li>　<a href="#">상품평 관리</a></li>
 					</ul>
@@ -206,34 +206,35 @@ html, body {height:100%;}
     
 
 
-		<!-- 상품평섹션 -->
-		
+ 		<!-- 공지 작성 섹션 -->
 		<div class="main-content container col-md-9">
 			<!--  테이블 -->
 			<div class="main">
-				<form action="admin_shopping_review_write_action" method="post" name="admin_shopping_review_write_action" id="admin_shopping_review_write_action">
+				<form action="admin_shopping_review_modify" method="post" name="admin_shopping_review_modify" id="admin_shopping_review_modify">
 					<table class="table table-bordered">
 						<tr>
+						<div style="display:none;"><input id="review_idx" name="review_idx" type="hidden" value="${ dto.review_idx }"></div>
 							<td style="padding:20px;">제목</td>
-							<td><input style="width:100%;" id="review_title" name="review_title" type="text"></td>
+							<td><input style="width:100%;" id="review_title" name="review_title" type="text" value="${ dto.review_title }"></td>
 						</tr>
 						<tr>
 							<td style="padding:20px;">내용</td>
-							<td><textarea style="resize:none;" id="review_content" name="review_content" cols="120" rows="20"></textarea></td>
+							<td><textarea style="resize:none;" id="review_content" name="review_content" cols="120" rows="20">${ dto.review_content }</textarea></td>
 						</tr>
 						<tr>
 						<td></td>
 						<td class="d-flex justify-content-center">
-						<input style="width:80px;" class="btn btn-primary" type="submit" value="작성">
+						<input style="width:80px;" class="btn btn-primary" type="submit" value="수정">
 						</td>
 						</tr>
 					</table>
 				</form>
+				
+				
 			</div>
 <div class="d-flex justify-content-center">
  <a style="margin-left:75px;" href="admin_shopping_review"><button class="btn btn-secondary" value="">목록으로</button></a>
 </div>
-
 		</div>
 
 </div>

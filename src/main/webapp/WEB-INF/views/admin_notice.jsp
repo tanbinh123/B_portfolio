@@ -233,16 +233,17 @@ h6 {
 	
 	
 	<div>
+	<form id="form1" method="post" action="admin_notice">
 		<select id="searchType" name="searchType">
-		    <option value="title" <c:if test="${page.searchType eq 'title'}">selected</c:if>>제목</option>
-	        <option value="content" <c:if test="${page.searchType eq 'content'}">selected</c:if>>내용</option>
-		    <option value="title_content" <c:if test="${page.searchType eq 'title_content'}">selected</c:if>>제목+내용</option>
+		    <option value="title" <c:if test="${ page.searchType eq 'title'}">selected</c:if>>제목</option>
+	        <option value="content" <c:if test="${ page.searchType eq 'content'}">selected</c:if>>내용</option>
+		    <option value="title_content" <c:if test="${ page.searchType eq 'title_content'}">selected</c:if>>제목+내용</option>
 		</select>
 		
 		<input type="text" id="keyword" name="keyword" value="${page.keyword}"/>
 		
-		<button type="button" id="searchBtn">검색</button>
-		
+		<input type="button" id="searchBtn" class="searchBtn btn btn-sm btn-primary" value="검색">
+		</form>
 	</div>
 	
 </div>
@@ -271,21 +272,8 @@ h6 {
 					</c:forEach>
 				</tbody>
 			</table>
-			<!-- 페이지 네비게이션 -->
-<%-- 			<select id="cntPerPage" name="sel" onchange="selChange()">
-				<option value="5"
-					<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5줄
-					보기</option>
-				<option value="10"
-					<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10줄
-					보기</option>
-				<option value="15"
-					<c:if test="${paging.cntPerPage == 15}">selected</c:if>>15줄
-					보기</option>
-				<option value="20"
-					<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20줄
-					보기</option>
-			</select> --%>
+			
+			
 			<div style="display: block; text-align: center;">
 			
 			
@@ -311,29 +299,7 @@ h6 {
 		<span>[ <a href="/admin_notice?num=${page.endPageNum + 1}${page.searchTypeKeyword}">다음</a> ]</span>
 	</c:if>
 			
-			
-	<%-- 			<c:if test="${paging.startPage != 1 }">
-					<a
-						href="/admin_notice?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}&searchType=${ searchType }&keyword${ keyword }">&lt;</a>
-				</c:if>
-				<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
-					var="p">
-					<c:choose>
-						<c:when test="${p == paging.nowPage }">
-							<b>${p }</b>
-						</c:when>
-						<c:when test="${p != paging.nowPage }">
-							<a
-								href="/admin_notice?nowPage=${p }&cntPerPage=${paging.cntPerPage}&searchType=${ searchType }&keyword${ keyword }"">${p }</a>
-						</c:when>
-					</c:choose>
-				</c:forEach>
-				<c:if test="${paging.endPage != paging.lastPage}">
-					<a
-						href="/admin_notice?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}&searchType=${ searchType }&keyword${ keyword }"">&gt;</a>
-				</c:if>
-				 --%>
-				
+		
 				
 				
 			</div>
@@ -368,7 +334,7 @@ h6 {
 		  
 		let searchType = document.getElementsByName("searchType")[0].value;
 		let keyword =  document.getElementsByName("keyword")[0].value;
-		
+		console.log("searchType : " + searchType+ "keyword : " + keyword)
 		location.href = "/admin_notice?num=1" + "&searchType=" + searchType + "&keyword=" + keyword;
 	};
 </script>

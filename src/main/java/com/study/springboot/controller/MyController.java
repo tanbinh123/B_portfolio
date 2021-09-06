@@ -1,15 +1,22 @@
-package com.study.springboot;
+package com.study.springboot.controller;
 
-import java.util.HashMap;
-import java.util.List;
 
+import java.io.FileNotFoundException;
+
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.study.springboot.dao.INoticeDao;
 import com.study.springboot.dto.PagingVO;
@@ -32,9 +39,16 @@ public class MyController {
 	@RequestMapping("/")
 	public String root() {
 
-		return "redirect:index";
+		return "index";
 	}
-
+	@RequestMapping("/qna_admin")
+	public String qna_admin() {
+		
+		return "Qna_admin";
+	}
+	
+	
+	
 	@RequestMapping("/index")
 	public String index() {
 
@@ -93,31 +107,6 @@ public class MyController {
 	}
 
 
-	@RequestMapping("/admin_notice")
-	public String admin_notice( HttpServletRequest request,
-			PagingVO vo, Model model
-			, @RequestParam(value="nowPage", required=false)String nowPage
-			, @RequestParam(value="cntPerPage", required=false)String cntPerPage) throws Exception{
-//		List<noticeDto> notice_list = noticeService.notice_list();
-		/*
-		 * int total = noticeDao.countBoard(); model.addAttribute("searchType",
-		 * searchType); model.addAttribute("keyword", keyword);
-		 * 
-		 * HashMap<String, Object> map = new HashMap<String, Object>();
-		 * map.put(searchType, "searchType"); map.put(keyword, "keyword"); //
-		 * request.setAttribute("notice_list", notice_list);
-		 * 
-		 * 
-		 * System.out.println(searchType +" " + keyword); if (nowPage == null &&
-		 * cntPerPage == null) { nowPage = "1"; cntPerPage = "5"; } else if (nowPage ==
-		 * null) { nowPage = "1"; } else if (cntPerPage == null) { cntPerPage = "5"; }
-		 * vo = new PagingVO(total, Integer.parseInt(nowPage),
-		 * Integer.parseInt(cntPerPage)); model.addAttribute("paging", vo);
-		 * model.addAttribute("notice_list", noticeDao.selectBoard(vo));
-		 */
-		return "admin_notice";
-	}
-
 	@RequestMapping("admin_notice_write")
 	public String admin_notice_write() {
 
@@ -170,6 +159,7 @@ public class MyController {
 			return "redirect:/admin_notice"; 
 		}
 	}
+
 
 
 }

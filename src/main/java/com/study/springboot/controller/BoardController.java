@@ -1,4 +1,4 @@
-package com.study.springboot;
+package com.study.springboot.controller;
 
 import java.util.List;
 
@@ -58,10 +58,10 @@ public class BoardController {
 	 */
 
 	
-	// 게시물 목록 + 페이징 추가 + 검색
+	// 공지사항 목록 + 페이징 추가 + 검색
 	@RequestMapping(value = "/admin_notice", method = RequestMethod.GET)
 	public String getListPageSearch(Model model, @RequestParam(value="num", defaultValue="1") int num, 
-			@RequestParam(value = "searchType", defaultValue = "title") String searchType,
+			@RequestParam(value = "searchType") String searchType,
 			@RequestParam(value = "keyword",required = false, defaultValue = "") String keyword
 			) throws Exception {
 	
@@ -71,7 +71,7 @@ public class BoardController {
 		page.setNum(num);
 		//page.setCount(service.count());		
 		page.setCount(service.searchCount(searchType, keyword));
-		
+		System.out.println("선택 : " + searchType);
 		// 검색 타입과 검색어
 		//page.setSearchTypeKeyword(searchType, keyword);
 		page.setSearchType(searchType);
