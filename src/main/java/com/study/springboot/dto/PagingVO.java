@@ -2,10 +2,19 @@ package com.study.springboot.dto;
 
 import java.util.Date;
 
+import lombok.Data;
+import lombok.ToString;
+
+@Data
 public class PagingVO {
 	// 현재페이지, 시작페이지, 끝페이지, 게시글 총 갯수, 페이지당 글 갯수, 마지막페이지, SQL쿼리에 쓸 start, end
 		private int nowPage, startPage, endPage, total, cntPerPage, lastPage, start, end;
-		private int cntPage = 10;
+		private int cntPage = 5;
+		private String searchType;
+		private String keyword;
+		
+
+		
 
 		public PagingVO(int notice_idx, String notice_title, String notice_content, Date notice_date) {
 			super();
@@ -131,8 +140,7 @@ public class PagingVO {
 		}
 		@Override
 		public String toString() {
-			return "PagingVO [nowPage=" + nowPage + ", startPage=" + startPage + ", endPage=" + endPage + ", total=" + total
-					+ ", cntPerPage=" + cntPerPage + ", lastPage=" + lastPage + ", start=" + start + ", end=" + end
-					+ ", cntPage=" + cntPage + "]";
+			return "PagingVO [searchType=" + searchType + ", keyword=" + keyword + "]";
 		}
+
 }

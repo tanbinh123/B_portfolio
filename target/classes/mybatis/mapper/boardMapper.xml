@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.springboot.dao.BoardDAO">
+
+	<!-- 게시물 목록 -->
+	<select id="list" resultType="com.study.springboot.dto.BoardVO">
+		select
+		notice_idx, notice_title, notice_content, notice_date
+		from shopping_notice
+	</select>
+
+	<!-- 게시물 작성 -->
+	<insert id="write" parameterType="com.study.springboot.dto.BoardVO">
+		insert into
+		shopping_notice(notice_idx, notice_title, notice_content, notice_date)
+		values(#{notice_idx}, #{notice_title}, #{notice_content}, sysdate)
+	</insert>
+
+	<!-- 게시물 조회 -->
+	<select id="view" parameterType="int"
+		resultType="com.study.springboot.dto.BoardVO">
+		select
+		notice_idx, notice_title, notice_content, notice_date
+		from
+		shopping_notice
+		where
+		notice_idx = #{notice_idx}
+	</select>
+
+	<!-- 게시물 수정 -->
+	<update id="modify"
+		parameterType="com.study.springboot.dto.BoardVO">
+		update
+		shopping_notice
+		set
+		title = #{notice_title},
+		content = #{notice_content}
+		where notice_idx = #{notice_idx}
+	</update>
+
+	<!-- 게시물 삭제 -->
+	<delete id="delete" parameterType="int">
+		delete
+		from shopping_notice
+		where notice_idx = #{notice_idx}
+	</delete>
+
+
+
+	<!-- 게시물 총 갯수 -->
+	<select id="count" resultType="int">
+		select count(notice_idx) from
+		shopping_notice
+	</select>
+
+
+
+	<!-- 게시물 목록 + 페이징 -->
+	<select id="listPage" parameterType="hashMap"
+		resultType="com.study.springboot.dto.BoardVO">
+		select
+		notice_idx, notice_title, notice_content, notice_date
+		from shopping_notice
+		order by
+		notice_idx desc
+		limit #{displayPost}, #{postNum}
+	</select>
+
+ <sql id="search">
+		<if test="searchType != null">
+			<if test='searchType.equals("title")'>
+				WHERE notice_title LIKE CONCAT('%' || #{keyword},  '%')
+			</if>
+			<if test='searchType.equals("content")'>
+				WHERE notice_content like CONCAT('%' || #{keyword},  '%')
+			</if>
+			<if test='searchType.equals("title_content")'>
+				WHERE notice_title LIKE CONCAT('%'|| #{keyword},  '%')
+				or notice_content LIKE CONCAT('%'|| #{keyword},  '%')
+			</if>
+		</if>
+	</sql>
+
+
+
+	<!-- 게시물 목록 + 페이징 + 검색 -->
+	<select id="listPageSearch"
+		resultType="com.study.springboot.dto.BoardVO">
+		SELECT * FROM(
+		SELECT ROWNUM AS RNUM, A.*
+		FROM(SELECT *
+		FROM shopping_notice
+		<include refid="search"></include>	
+		ORDER BY notice_idx DESC)
+		
+		A WHERE ROWNUM <![CDATA[ <= ]]>
+		#{displayPost} + #{postNum}
+		)
+		WHERE RNUM <![CDATA[ > ]]>
+		#{displayPost}
+	</select>
+
+	<!-- 게시물 총 갯수 + 검색 적용 -->
+	<select id="searchCount"
+		resultType="_int">
+		select count(*) from shopping_notice
+		<include refid="search"></include>	
+	</select>
+
+
+</mapper>
