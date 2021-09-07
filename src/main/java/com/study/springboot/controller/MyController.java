@@ -1,12 +1,25 @@
-package com.study.springboot;
+package com.study.springboot.controller;
 
+<<<<<<< HEAD:src/main/java/com/study/springboot/MyController.java
+=======
+
+import java.io.FileNotFoundException;
+
+import javax.servlet.ServletContext;
+>>>>>>> 56b575679a692641989521ce93b3245ab280a074:src/main/java/com/study/springboot/controller/MyController.java
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.study.springboot.dto.PagingVO;
 import com.study.springboot.dto.noticeDto;
@@ -27,9 +40,16 @@ public class MyController {
 	@RequestMapping("/")
 	public String root() {
 
-		return "redirect:index";
+		return "index";
 	}
-
+	@RequestMapping("/qna_admin")
+	public String qna_admin() {
+		
+		return "Qna_admin";
+	}
+	
+	
+	
 	@RequestMapping("/index")
 	public String index() {
 
@@ -87,6 +107,7 @@ public class MyController {
 		return "redirect:admin";
 	}
 
+<<<<<<< HEAD:src/main/java/com/study/springboot/MyController.java
 //
 //	@RequestMapping("/admin_notice")
 //	public String admin_notice( HttpServletRequest request,
@@ -94,6 +115,8 @@ public class MyController {
 //		
 //		return "admin_notice";
 //	}
+=======
+>>>>>>> 56b575679a692641989521ce93b3245ab280a074:src/main/java/com/study/springboot/controller/MyController.java
 
 	@RequestMapping("admin_notice_write")
 	public String admin_notice_write() {
@@ -148,5 +171,9 @@ public class MyController {
 		}
 	}
 
+<<<<<<< HEAD:src/main/java/com/study/springboot/MyController.java
+=======
+
+>>>>>>> 56b575679a692641989521ce93b3245ab280a074:src/main/java/com/study/springboot/controller/MyController.java
 
 }

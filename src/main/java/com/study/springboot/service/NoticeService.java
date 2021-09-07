@@ -49,6 +49,7 @@ public class NoticeService {
 		return result;
 	}
 	
+<<<<<<< HEAD
 	public int countBoard() {
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -79,5 +80,37 @@ public class NoticeService {
 		return noticeDao.selectBoard(vo);
 	}
 	
+=======
+	/*
+	 * public int countBoard() {
+	 * 
+	 * HashMap<String, Object> map = new HashMap<String, Object>();
+	 * HttpServletRequest request =
+	 * ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).
+	 * getRequest();
+	 * 
+	 * String keyword = request.getParameter("keyword"); String searchType =
+	 * request.getParameter("searchType");
+	 * 
+	 * map.put("keyword", keyword); map.put("searchType", searchType);
+	 * 
+	 * 
+	 * 
+	 * return noticeDao.countBoard(); }
+	 * 
+	 * public List<noticeDto> selectBoard(PagingVO vo) { HashMap<String, Object> map
+	 * = new HashMap<String, Object>(); HttpServletRequest request =
+	 * ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).
+	 * getRequest();
+	 * 
+	 * String keyword = request.getParameter("keyword"); String searchType =
+	 * request.getParameter("searchType");
+	 * 
+	 * 
+	 * map.put("keyword", keyword); map.put("searchType", searchType);
+	 * 
+	 * return noticeDao.selectBoard(vo); }
+	 */
+>>>>>>> 56b575679a692641989521ce93b3245ab280a074
 	
 }

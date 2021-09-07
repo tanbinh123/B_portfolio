@@ -21,6 +21,8 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
 	crossorigin="anonymous">
+
+	
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
@@ -192,20 +194,35 @@ h6 {
 				<li class="text-center sidebar-brand">MENU</li>
 				<li>주문 관리
 					<ul>
+<<<<<<< HEAD
 						<li><a href="admin_order"> 주문 목록</a></li>
+=======
+						<li><a href="admin_order">　주문 목록</a></li>
+>>>>>>> 56b575679a692641989521ce93b3245ab280a074
 					</ul>
 				</li>
 				<li>상품 관리
 					<ul>
+<<<<<<< HEAD
 						<li><a href="#"> 상품 목록</a></li>
 						<li><a href="#"> 상품 등록</a></li>
+=======
+						<li><a href="#">　상품 목록</a></li>
+						<li><a href="#">　상품 등록</a></li>
+>>>>>>> 56b575679a692641989521ce93b3245ab280a074
 					</ul>
 				</li>
 				<li>커뮤니티 관리
 					<ul>
+<<<<<<< HEAD
 						<li><a href="admin_notice"> 공지사항 관리</a></li>
 						<li><a href="#"> 묻고답하기 관리</a></li>
 						<li><a href="#"> 상품평 관리</a></li>
+=======
+						<li><a href="admin_notice">　공지사항 관리</a></li>
+						<li><a href="#">　묻고답하기 관리</a></li>
+						<li><a href="#">　상품평 관리</a></li>
+>>>>>>> 56b575679a692641989521ce93b3245ab280a074
 					</ul>
 				</li>
 			</ul>
@@ -214,6 +231,7 @@ h6 {
 		<!-- 메인 -->
 		<div class="main-content container col-md-9">
 
+<<<<<<< HEAD
 			<form id="infoForm" action="admin_notice" method="get">
 				<input type="hidden" id="searchType" name="searchType"
 					value="${ searchType }">
@@ -237,6 +255,39 @@ h6 {
 						검색</button>
 			</div>
 
+=======
+<form id="infoForm" action="admin_notice" method="get">
+	<input type="hidden" id="searchType" name="searchType" value="${ searchType }">
+</form>
+
+
+
+<div>
+
+	
+	<%-- <c:forEach begin="1" end="${pageNum}" var="num">
+  		<span>
+  			<a href="/board/listPage?num=${num}">${num}</a>
+		</span>
+	</c:forEach> --%>
+	
+	
+	<div>
+	<form id="form1" method="post" action="admin_notice">
+		<select id="searchType" name="searchType">
+		    <option value="title" <c:if test="${ page.searchType eq 'title'}">selected</c:if>>제목</option>
+	        <option value="content" <c:if test="${ page.searchType eq 'content'}">selected</c:if>>내용</option>
+		    <option value="title_content" <c:if test="${ page.searchType eq 'title_content'}">selected</c:if>>제목+내용</option>
+		</select>
+		
+		<input type="text" id="keyword" name="keyword" value="${page.keyword}"/>
+		
+		<input type="button" id="searchBtn" class="searchBtn btn btn-sm btn-primary" value="검색">
+		</form>
+	</div>
+	
+</div>
+>>>>>>> 56b575679a692641989521ce93b3245ab280a074
 
 
 
@@ -255,14 +306,20 @@ h6 {
 							<td>${dto.notice_idx}</td>
 							<td><a
 								href="admin_notice_view?notice_idx=${ dto.notice_idx }">${dto.notice_title}</a></td>
+<<<<<<< HEAD
 							<td><<fmt:formatDate value="${dto.notice_date}"
 									pattern="yyyy-MM-dd" />
 							</td>
+=======
+							<td><fmt:formatDate value="${ dto.notice_date }"
+									pattern="yyyy.MM.dd" /></td>
+>>>>>>> 56b575679a692641989521ce93b3245ab280a074
 
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
+<<<<<<< HEAD
 			<!-- 페이지 네비게이션 -->
 
 			<c:if test="${page.prev}">
@@ -292,6 +349,39 @@ h6 {
 
 
 
+=======
+			
+			
+			<div style="display: block; text-align: center;">
+			
+			
+				<c:if test="${page.prev}">
+		<span>[ <a href="/admin_notice?num=${page.startPageNum - 1}${page.searchTypeKeyword}">이전</a> ]</span>
+	</c:if>
+	
+	<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
+		<span>
+		
+			<c:if test="${select != num}">
+				<a href="/admin_notice?num=${num}${page.searchTypeKeyword}">${num}</a>
+			</c:if> 			
+			
+			<c:if test="${select == num}">
+				<b>${num}</b>
+			</c:if>
+	 			
+		</span>
+	</c:forEach>
+	
+	<c:if test="${page.next}">
+		<span>[ <a href="/admin_notice?num=${page.endPageNum + 1}${page.searchTypeKeyword}">다음</a> ]</span>
+	</c:if>
+			
+		
+				
+				
+			</div>
+>>>>>>> 56b575679a692641989521ce93b3245ab280a074
 			<div id="notice_write_div" class="d-flex justify-content-center">
 				<a href="admin_notice_write"><input id="notice_write"
 					type="button" value="글쓰기"></a>
@@ -325,4 +415,16 @@ h6 {
 	};
 </script>
 </body>
+	
+<script>
+
+	document.getElementById("searchBtn").onclick = function () {
+		  
+		let searchType = document.getElementsByName("searchType")[0].value;
+		let keyword =  document.getElementsByName("keyword")[0].value;
+		console.log("searchType : " + searchType+ "keyword : " + keyword)
+		location.href = "/admin_notice?num=1" + "&searchType=" + searchType + "&keyword=" + keyword;
+	};
+</script>
+
 </html>

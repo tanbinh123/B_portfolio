@@ -2,6 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<<<<<<< HEAD
 <mapper namespace="com.study.springboot.dao.BoardDAO">
 
 	<!-- 게시물 목록 -->
@@ -13,6 +14,15 @@
 
 	<!-- 게시물 작성 -->
 	<insert id="write" parameterType="com.study.springboot.dto.BoardVO">
+=======
+<mapper namespace="com.board.mappers.board">
+
+
+
+	<!-- 게시물 작성 -->
+	<insert id="write"
+		parameterType="com.study.springboot.domain.BoardVO">
+>>>>>>> 56b575679a692641989521ce93b3245ab280a074
 		insert into
 		shopping_notice(notice_idx, notice_title, notice_content, notice_date)
 		values(#{notice_idx}, #{notice_title}, #{notice_content}, sysdate)
@@ -20,7 +30,11 @@
 
 	<!-- 게시물 조회 -->
 	<select id="view" parameterType="int"
+<<<<<<< HEAD
 		resultType="com.study.springboot.dto.BoardVO">
+=======
+		resultType="com.study.springboot.domain.BoardVO">
+>>>>>>> 56b575679a692641989521ce93b3245ab280a074
 		select
 		notice_idx, notice_title, notice_content, notice_date
 		from
@@ -31,7 +45,11 @@
 
 	<!-- 게시물 수정 -->
 	<update id="modify"
+<<<<<<< HEAD
 		parameterType="com.study.springboot.dto.BoardVO">
+=======
+		parameterType="com.study.springboot.domain.BoardVO">
+>>>>>>> 56b575679a692641989521ce93b3245ab280a074
 		update
 		shopping_notice
 		set
@@ -59,7 +77,11 @@
 
 	<!-- 게시물 목록 + 페이징 -->
 	<select id="listPage" parameterType="hashMap"
+<<<<<<< HEAD
 		resultType="com.study.springboot.dto.BoardVO">
+=======
+		resultType="com.study.springboot.domain.BoardVO">
+>>>>>>> 56b575679a692641989521ce93b3245ab280a074
 		select
 		notice_idx, notice_title, notice_content, notice_date
 		from shopping_notice
@@ -67,6 +89,7 @@
 		notice_idx desc
 		limit #{displayPost}, #{postNum}
 	</select>
+<<<<<<< HEAD
 
  <sql id="search">
 		<if test="searchType != null">
@@ -107,6 +130,65 @@
 		resultType="_int">
 		select count(*) from shopping_notice
 		<include refid="search"></include>	
+=======
+<!-- SELECT * 
+  FROM(
+        SELECT ROWNUM AS RNUM, A.*
+            FROM ( 조회할 데이터의 쿼리 ) A
+         WHERE ROWNUM <= 10+20(동적으로 만들 경우를 대비해 시작순서와 데이터 갯수를 더해주는 식)
+      )
+ WHERE RNUM > 10;
+ -->
+
+
+	<!-- 게시물 목록 + 페이징 + 검색 -->
+	<select id="listPageSearch" parameterType="hashMap"
+		resultType="com.study.springboot.domain.BoardVO">
+
+		select *
+		FROM(SELECT ROWNUM as RN, A.*
+				FROM(
+					select
+					*
+					from shopping_notice
+					<if test='searchType.equals("title")'>
+						WHERE notice_title LIKE concat('%' || #{keyword}, '%')
+					</if>
+			
+					<if test='searchType.equals("content")'>
+						WHERE notice_content LIKE concat('%' || #{keyword}, '%')
+					</if>
+			
+					<if test='searchType.equals("title_content")'>
+						WHERE notice_title LIKE concat('%' || #{keyword}, '%')
+						or notice_content LIKE concat('%' || #{keyword}, '%')
+					</if>
+					order by notice_idx desc)
+				A WHERE ROWNUM  <![CDATA[ <= ]]>#{displayPost}+ #{postNum})
+		 WHERE RN  <![CDATA[ > ]]> #{displayPost}
+
+	</select>
+
+	<!-- 게시물 총 갯수 + 검색 적용 -->
+	<select id="searchCount" parameterType="hashMap"
+		resultType="int">
+		select count(*) from shopping_notice
+		<if test="searchType != null">
+			<if test='searchType.equals("title")'>
+				WHERE notice_title LIKE concat('%' || #{keyword}, '%')
+			</if>
+
+			<if test='searchType.equals("content")'>
+				WHERE notice_content LIKE concat('%' || #{keyword}, '%')
+			</if>
+
+			<if test='searchType.equals("title_content")'>
+				WHERE notice_title LIKE concat('%' || #{keyword}, '%')
+				or notice_content
+				LIKE concat('%' || #{keyword}, '%')
+			</if>
+		</if>
+>>>>>>> 56b575679a692641989521ce93b3245ab280a074
 	</select>
 
 

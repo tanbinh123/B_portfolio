@@ -145,7 +145,11 @@ html, body {height:100%;}
 						aria-haspopup="true" aria-expanded="false"> 커뮤니티 관리 </a>
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenuLink">
+<<<<<<< HEAD
 							<a class="dropdown-item" href="admin_notice">공지사항 관리</a> <a
+=======
+							<a class="dropdown-item" href="admin_shopping_review">공지사항 관리</a> <a
+>>>>>>> 56b575679a692641989521ce93b3245ab280a074
 								class="dropdown-item" href="#">묻고답하기 관리</a> <a
 								class="dropdown-item" href="#">상품평 관리</a>
 						</div></li>
@@ -194,7 +198,11 @@ html, body {height:100%;}
 				</li>
 				<li>커뮤니티 관리
 					<ul>
+<<<<<<< HEAD
 						<li>　<a href="admin_notice">공지사항 관리</a></li>
+=======
+						<li>　<a href="admin_shopping_review">공지사항 관리</a></li>
+>>>>>>> 56b575679a692641989521ce93b3245ab280a074
 						<li>　<a href="#">묻고답하기 관리</a></li>
 						<li>　<a href="#">상품평 관리</a></li>
 					</ul>
@@ -207,10 +215,18 @@ html, body {height:100%;}
 
 
 		<!-- 상품평섹션 -->
+<<<<<<< HEAD
 		<div class="main-content container col-md-9">
 			<!--  테이블 -->
 			<div class="main">
 				<form action="shopping_review_write_action" method="post" name="shopping_review_write_action" id="shopping_review_write_action">
+=======
+		
+		<div class="main-content container col-md-9">
+			<!--  테이블 -->
+			<div class="main">
+				<form action="admin_shopping_review_write_action" method="post" name="admin_shopping_review_write_action" id="admin_shopping_review_write_action">
+>>>>>>> 56b575679a692641989521ce93b3245ab280a074
 					<table class="table table-bordered">
 						<tr>
 							<td style="padding:20px;">제목</td>
@@ -230,7 +246,11 @@ html, body {height:100%;}
 				</form>
 			</div>
 <div class="d-flex justify-content-center">
+<<<<<<< HEAD
  <a style="margin-left:75px;" href="admin_notice"><button class="btn btn-secondary" value="">목록으로</button></a>
+=======
+ <a style="margin-left:75px;" href="admin_shopping_review"><button class="btn btn-secondary" value="">목록으로</button></a>
+>>>>>>> 56b575679a692641989521ce93b3245ab280a074
 </div>
 
 		</div>

@@ -7,16 +7,29 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+<<<<<<< HEAD
 import com.study.springboot.dto.BoardVO;
+=======
+import com.study.springboot.domain.BoardVO;
+
+
+>>>>>>> 56b575679a692641989521ce93b3245ab280a074
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
 
+<<<<<<< HEAD
 	
 	@Autowired
 	private SqlSession sql;
 	
 	private static String namespace = "com.study.springboot.dao.BoardDAO";
+=======
+	@Autowired
+	private SqlSession sql;
+	
+	private static String namespace = "com.board.mappers.board";
+>>>>>>> 56b575679a692641989521ce93b3245ab280a074
 
 	// 게시물 목록
 	@Override
@@ -34,9 +47,15 @@ public class BoardDAOImpl implements BoardDAO {
 
 	// 게시물 조회
 	@Override
+<<<<<<< HEAD
 	public BoardVO view(int bno) throws Exception {
 	
 		return sql.selectOne(namespace + ".view", bno);
+=======
+	public BoardVO view(int notice_idx) throws Exception {
+	
+		return sql.selectOne(namespace + ".view", notice_idx);
+>>>>>>> 56b575679a692641989521ce93b3245ab280a074
 	}
 
 	// 게시물 수정
@@ -47,8 +66,13 @@ public class BoardDAOImpl implements BoardDAO {
 
 	// 게시물 삭제
 	@Override
+<<<<<<< HEAD
 	public void delete(int bno) throws Exception {
 		sql.delete(namespace + ".delete", bno);
+=======
+	public void delete(int notice_idx) throws Exception {
+		sql.delete(namespace + ".delete", notice_idx);
+>>>>>>> 56b575679a692641989521ce93b3245ab280a074
 	}
 
 	
@@ -93,7 +117,11 @@ public class BoardDAOImpl implements BoardDAO {
 	
 	// 게시물 총 갯수 + 검색 적용
 	@Override
+<<<<<<< HEAD
 	public int searchCount(String searchType, String keyword) {
+=======
+	public int searchCount(String searchType, String keyword) throws Exception {
+>>>>>>> 56b575679a692641989521ce93b3245ab280a074
 		
 		HashMap<String, Object> data = new HashMap<String, Object>();
 		

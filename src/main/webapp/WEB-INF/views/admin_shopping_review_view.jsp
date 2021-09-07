@@ -2,11 +2,7 @@
 	pageEncoding="UTF-8"%>
 	
 	
-<<<<<<< HEAD
 
-=======
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
->>>>>>> 56b575679a692641989521ce93b3245ab280a074
   <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/style.css">
 <!DOCTYPE html>
@@ -32,11 +28,7 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
 	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 	crossorigin="anonymous"></script>
-<<<<<<< HEAD
-<title>상품평작성</title>
-=======
 <title>상품평관리</title>
->>>>>>> 56b575679a692641989521ce93b3245ab280a074
 
 <style>
 ul{
@@ -153,11 +145,7 @@ html, body {height:100%;}
 						aria-haspopup="true" aria-expanded="false"> 커뮤니티 관리 </a>
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenuLink">
-<<<<<<< HEAD
 							<a class="dropdown-item" href="admin_notice">공지사항 관리</a> <a
-=======
-							<a class="dropdown-item" href="admin_review">공지사항 관리</a> <a
->>>>>>> 56b575679a692641989521ce93b3245ab280a074
 								class="dropdown-item" href="#">묻고답하기 관리</a> <a
 								class="dropdown-item" href="#">상품평 관리</a>
 						</div></li>
@@ -206,11 +194,7 @@ html, body {height:100%;}
 				</li>
 				<li>커뮤니티 관리
 					<ul>
-<<<<<<< HEAD
 						<li>　<a href="admin_notice">공지사항 관리</a></li>
-=======
-						<li>　<a href="admin_review">공지사항 관리</a></li>
->>>>>>> 56b575679a692641989521ce93b3245ab280a074
 						<li>　<a href="#">묻고답하기 관리</a></li>
 						<li>　<a href="#">상품평 관리</a></li>
 					</ul>
@@ -222,120 +206,36 @@ html, body {height:100%;}
     
 
 
-<<<<<<< HEAD
-   <div class="main-content container col-md-9 ">
-      <h3>｜상품평 관리</h3>
-      <hr style="border: 1px solid gray; width: 100%;">
-      <div id="search">
-        <select name="" id="">
-          <option value="">제목</option>
-          <option value="">내용</option>
-          <option value="">제목+내용</option>
-          <option value="">작성자</option>
-        </select>
-        <input type="search" name="" id="">
-        <a href="#"><button>검색</button></a>
-      </div>
-      <table class="table">
-        <tbody>
-          <thead>
-            <td width="10%">번호</td>
-            <td width="40%">제목</td>
-            <td width="20%">작성자</td>
-            <td width="30%">작성일</td>
-          </thead>
-          <c:forEach var="qnadto" items="${ reviewlist }">
-            <tr>
-              <td width="10%">{ 번호 }</td>
-              <td width="40%" align="left">
-                <a href="qnaview?qna_idx=${ reviewdto.review_idx }">
-                  ${ reviewdto.review_title }
-                </a>
-              </td>
-              <td width="20%">{ 작성자 }</td>
-              <td width="30%">{ 작성일 }</td>
-            </tr>
-          </c:forEach>
-        </tbody>
-      </table>
-      <div id="writebtn"> <a href="qnawrite"><button id="write">글쓰기</button></a></div>
-      <div id="pagenavigation">
-        <nav aria-label="Page navigation example">
-          <ul class="pagination justify-content-center">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-=======
- 		<div class="main-content container col-md-9">
- 		<h3>｜상품평관리</h3>
- 		
-			<!-- 공지사항 검색 -->
-			<div id="reviewSearch" class="">
-				<select name="search_menu" class="searchbar">
-					<option value="search_title">제목</option>
-					<option value="search_content2">내용</option>
-					<option value="search_titleContent">제목+내용</option>
-				</select> <input type="search" id="search_content" name="search_content"
-					class="searchbar"> <a href="#"><button
-						id="searchButton" class="btn btn-secondary">검색</button></a>
+ 		<!-- 공지 작성 섹션 -->
+		<div class="main-content container col-md-9">
+			<!--  테이블 -->
+			<div class="main">
+				<form action="admin_shopping_review_modify" method="post" name="admin_shopping_review_modify" id="admin_shopping_review_modify">
+					<table class="table table-bordered">
+						<tr>
+						<div style="display:none;"><input id="review_idx" name="review_idx" type="hidden" value="${ dto.review_idx }"></div>
+							<td style="padding:20px;">제목</td>
+							<td><input style="width:100%;" id="review_title" name="review_title" type="text" value="${ dto.review_title }"></td>
+						</tr>
+						<tr>
+							<td style="padding:20px;">내용</td>
+							<td><textarea style="resize:none;" id="review_content" name="review_content" cols="120" rows="20">${ dto.review_content }</textarea></td>
+						</tr>
+						<tr>
+						<td></td>
+						<td class="d-flex justify-content-center">
+						<input style="width:80px;" class="btn btn-primary" type="submit" value="수정">
+						</td>
+						</tr>
+					</table>
+				</form>
+				
+				
 			</div>
-			<!-- 주문관리 테이블 -->
-			<table class="table">
-				<thead>
-					<tr>
-						<th scope="col">번호</th>
-						<th scope="col">상품평</th>
-						<th scope="col">작성일</th>
-						
-					</tr>
-				</thead>
-				<tbody>
-						<c:forEach var="dto" items= '${ shopping_review_list }'>
-					<tr>
-						<td>${dto.review_idx}</td>
-						<td><a href="admin_shopping_review_view?review_idx=${ dto.review_idx }">${dto.review_title}</a></td>
-						<td>${dto.review_date}</td>
-
-					</tr>
-</c:forEach>
-				</tbody>
-			</table>
-			<div id="review_write_div" class="d-flex justify-content-center">
-						<a href="admin_shopping_review_write"><input id="admin_shopping_review_write" type="button" value="글쓰기"></a>
-			</div>
-
-				<!-- 페이지 네비게이션 -->
-
-				<nav aria-label="Page navigation example">
-					<ul class="pagination justify-content-center">
-						<li class="page-item"><a class="page-link" href="#"
-							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-						</a></li>
-						<li class="page-item"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item"><a class="page-link" href="#"
-							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-						</a></li>
-					</ul>
-				</nav>
-
+<div class="d-flex justify-content-center">
+ <a style="margin-left:75px;" href="admin_shopping_review"><button class="btn btn-secondary" value="">목록으로</button></a>
+</div>
 		</div>
->>>>>>> 56b575679a692641989521ce93b3245ab280a074
 
 </div>
 

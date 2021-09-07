@@ -17,6 +17,7 @@ public interface INoticeDao {
 	public int admin_notice_write(noticeDto dto);
 	public void admin_notice_delete(String notice_idx);
 	public int admin_notice_modify(String notice_idx, String notice_title, String notice_content);
+<<<<<<< HEAD
 	
 	// 게시물 총 갯수
 	public int countBoard();
@@ -27,4 +28,14 @@ public interface INoticeDao {
 	
 	
 
+=======
+	/*
+	 * // 게시물 총 갯수 public int countBoard();
+	 * 
+	 * 
+	 * // 페이징 처리 게시글 조회 public List<noticeDto> selectBoard(PagingVO vo);
+	 * 
+	 * 
+	 */
+>>>>>>> 56b575679a692641989521ce93b3245ab280a074
 }

@@ -2,8 +2,12 @@ package com.study.springboot.service;
 
 import java.util.List;
 
+<<<<<<< HEAD
 
 import com.study.springboot.dto.BoardVO;
+=======
+import com.study.springboot.domain.BoardVO;
+>>>>>>> 56b575679a692641989521ce93b3245ab280a074
 
 
 public interface BoardService {
@@ -15,13 +19,21 @@ public interface BoardService {
 	public void write(BoardVO vo) throws Exception;
 
 	// 게시물 조회
+<<<<<<< HEAD
 	public BoardVO view(int bno) throws Exception;
+=======
+	public BoardVO view(int notice_idx) throws Exception;
+>>>>>>> 56b575679a692641989521ce93b3245ab280a074
 
 	// 게시물 수정
 	public void modify(BoardVO vo) throws Exception;
 	
 	// 게시물 삭제
+<<<<<<< HEAD
 	public void delete(int bno) throws Exception;
+=======
+	public void delete(int notice_idx) throws Exception;
+>>>>>>> 56b575679a692641989521ce93b3245ab280a074
 	
 	
 	

@@ -25,6 +25,10 @@
 		<update id="admin_notice_modify">
 		update shopping_notice set notice_title=#{param2}, notice_content=#{param3}, notice_date= sysdate where notice_idx=#{param1}
 	</update>
+<<<<<<< HEAD
+
+<!-- 	<sql id="search">
+=======
 
 <!-- 	<sql id="search">
 		<if test="searchType != null">
@@ -40,8 +44,60 @@
 			</if>
 		</if>
 	</sql> -->
+	<!-- 
+	
+총 게시글 갯수 출력
+<select id="countBoard" parameterType="hashMap" resultType="int" >
+	SELECT COUNT(*) FROM shopping_notice
+		<if test="searchType != null">
+			<if test='searchType.equals("t")'>
+				WHERE notice_title LIKE concat('%', #{keyword}, '%')
+			</if>
+			<if test='searchType.equals("c")'>
+				WHERE notice_content like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test='searchType.equals("tc")'>
+				WHERE notice_title LIKE concat('%', #{keyword}, '%')
+				or notice_content LIKE concat('%', #{keyword}, '%')
+			</if>
+		</if>
+</select>
+
+페이징 처리 후 게시글 조회
+<select id="selectBoard" parameterType="hashMap" resultType="com.study.springboot.dto.PagingVO">
+	SELECT * 
+		FROM (
+			SELECT ROWNUM RN, A.* 
+				FROM (
+						SELECT * 
+						FROM shopping_notice 
+						ORDER BY notice_idx DESC 
+						) A
+				)
+				
+>>>>>>> 56b575679a692641989521ce93b3245ab280a074
+		<if test="searchType != null">
+			<if test='searchType.equals("t")'>
+				WHERE notice_title LIKE concat('%', #{keyword}, '%')
+			</if>
+			<if test='searchType.equals("c")'>
+				WHERE notice_content like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test='searchType.equals("tc")'>
+				WHERE notice_title LIKE concat('%', #{keyword}, '%')
+				or notice_content LIKE concat('%', #{keyword}, '%')
+			</if>
+		</if>
+<<<<<<< HEAD
+	</sql> -->
 	
 	
+=======
+	WHERE RN BETWEEN #{start} AND #{end}
+</select>
+ -->
+ 
+>>>>>>> 56b575679a692641989521ce93b3245ab280a074
  
  
  

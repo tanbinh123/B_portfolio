@@ -2,6 +2,7 @@ package com.study.springboot.dao;
 
 import java.util.List;
 
+<<<<<<< HEAD
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.context.annotation.Primary;
@@ -10,6 +11,10 @@ import com.study.springboot.dto.BoardVO;
 
 @Primary
 @Mapper
+=======
+import com.study.springboot.domain.BoardVO;
+
+>>>>>>> 56b575679a692641989521ce93b3245ab280a074
 public interface BoardDAO {
 	
 	// 게시물 목록
@@ -41,10 +46,17 @@ public interface BoardDAO {
 	
 	// 게시물 목록 + 페이징 + 검색
 	public List<BoardVO> listPageSearch(
+<<<<<<< HEAD
 			@Param("displayPost")int displayPost,@Param("postNum") int postNum,@Param("searchType") String searchType,@Param("keyword") String keyword) throws Exception;
 	
 	// 게시물 총 갯수 + 검색 적용
 	public int searchCount(@Param("searchType") String searchType,@Param("keyword") String keyword) throws Exception;	
+=======
+			int displayPost, int postNum, String searchType, String keyword) throws Exception;
+	
+	// 게시물 총 갯수 + 검색 적용
+	public int searchCount(String searchType, String keyword) throws Exception;	
+>>>>>>> 56b575679a692641989521ce93b3245ab280a074
 		
 		
 }
