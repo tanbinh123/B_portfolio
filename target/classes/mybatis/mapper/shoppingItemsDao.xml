@@ -17,5 +17,8 @@
 
 
 	</insert>
-
+	
+	<select id="admin_order_list" resultType="com.study.springboot.dto.shoppingItemsDto"> 
+		select * from shopping_items order by items_idx desc
+	</select>
 </mapper>

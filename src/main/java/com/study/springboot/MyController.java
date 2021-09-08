@@ -1,5 +1,7 @@
 package com.study.springboot;
 
+import java.util.List;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,16 +12,19 @@ import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.study.springboot.dto.PagingVO;
 import com.study.springboot.dto.noticeDto;
+import com.study.springboot.dto.shoppingItemsDto;
 import com.study.springboot.service.AdminService;
 import com.study.springboot.service.NoticeService;
+import com.study.springboot.service.ShoppingItemsService;
 
 @Controller
 public class MyController {
 
 	@Autowired
 	private NoticeService noticeService;
+	@Autowired
+	private ShoppingItemsService shoppingItemsService;
 	
 	@Autowired
 	private AdminService adminService;
@@ -49,8 +54,9 @@ public class MyController {
 	}
 
 	@RequestMapping("/admin_order")
-	public String admin_order() {
-
+	public String admin_order(HttpServletRequest request, Model model) {
+		List<shoppingItemsDto> order_list = shoppingItemsService.admin_order_list();
+		model.addAttribute("order_list", order_list);
 		return "admin_order";
 	}
 

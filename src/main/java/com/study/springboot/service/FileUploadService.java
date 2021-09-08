@@ -30,7 +30,7 @@ public class FileUploadService {
 			savepath = ResourceUtils.getFile("classpath:static/upload/").toPath().toString();
 			savepath = savepath.replace("\\", "/");
 			System.out.println("savepath2 : " + savepath);
-			savepath = savepath.replace("/bin/main/static", "/src/main/resources/static");
+			savepath = savepath.replace("/target/classes/static", "/src/main/resources/static");
 			System.out.println("savepath3 : " + savepath);
 			SAVE_PATH = savepath;
 			PREFIX_URL = savepath;

@@ -1,9 +1,12 @@
 package com.study.springboot.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.study.springboot.dao.IShoppingItemsDao;
+import com.study.springboot.dto.noticeDto;
 import com.study.springboot.dto.shoppingItemsDto;
 
 
@@ -30,4 +33,10 @@ public class ShoppingItemsService {
 		result = dao.shopping_items_write(dto);
 		return result;
 	}
+	
+	public List<shoppingItemsDto> admin_order_list() {
+		List<shoppingItemsDto> admin_order_list = dao.admin_order_list();
+		return admin_order_list;
+	}
+	
 }
