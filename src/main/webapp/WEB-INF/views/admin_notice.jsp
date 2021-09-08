@@ -255,7 +255,7 @@ h6 {
 							<td>${dto.notice_idx}</td>
 							<td><a
 								href="admin_notice_view?notice_idx=${ dto.notice_idx }">${dto.notice_title}</a></td>
-							<td><<fmt:formatDate value="${dto.notice_date}"
+							<td><fmt:formatDate value="${dto.notice_date}"
 									pattern="yyyy-MM-dd" />
 							</td>
 

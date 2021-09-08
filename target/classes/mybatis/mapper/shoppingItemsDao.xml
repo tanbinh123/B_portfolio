@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.springboot.dao.IShoppingItemsDao">
+
+	<insert id="shopping_items_write"
+		parameterType="com.study.springboot.dto.shoppingItemsDto">
+
+		insert into shopping_items (items_idx, items_img, items_title, items_price,
+		items_numb, items_status, items_name, items_email, items_member_idx)
+		values (shopping_items_seq.nextval, #{items_img},
+		#{items_title}, #{items_price}, #{items_numb}, #{items_status},
+		#{items_name}, #{items_email}, #{items_member_idx})
+
+
+	</insert>
+
+</mapper>

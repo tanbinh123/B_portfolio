@@ -1,10 +1,12 @@
 package com.study.springboot;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -22,11 +24,16 @@ public class MyController {
 	@Autowired
 	private AdminService adminService;
 	
-
+	@Autowired
+	private ServletContext context;
 
 	@RequestMapping("/")
-	public String root() {
-
+	public String root() throws Exception{
+		System.out.println("path:" + context.getRealPath("/") );
+		System.out.println("path:" + context.getContextPath() );
+		String path = ResourceUtils.getFile("classpath:static/upload/").toPath().toString();
+		System.out.println("path:" + path );
+		
 		return "redirect:index";
 	}
 
