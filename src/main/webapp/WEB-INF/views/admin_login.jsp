@@ -88,6 +88,36 @@ h6 {
 	width: 150%;
 	height: 150%;
 }
+
+.input{
+	width: 40px;
+	height: 40px;
+	text-align: right;
+	padding-right: 5px;
+	font-weight: bold;
+	border-right: 0px;
+	border-radius: 5px 0px 0px 5px;
+}
+
+.input2{
+	height: 40px;
+	padding-left: 10px;
+}
+
+td>.btn{
+	margin-top: 10px;
+	margin-bottom: -10px;
+	background-color: #4a484b;
+	color: white;
+	width: 130px;
+	height: 38px;
+}
+
+td>.btn:hover{
+	color: white;
+	background-color: #39373a;
+}
+
 </style>
 
 </head>
@@ -121,8 +151,8 @@ h6 {
 						aria-haspopup="true" aria-expanded="false"> 상품관리 </a>
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item disabled" href="#">상품목록</a> <a
-								class="dropdown-item disabled" href="#">상품등록</a>
+							<a class="dropdown-item disabled" href="admin_items_list">상품목록</a> <a
+								class="dropdown-item disabled" href="admin_items_add">상품등록</a>
 						</div></li>
 				</ul>
 				<ul class="navbar-nav m-auto">
@@ -132,16 +162,19 @@ h6 {
 						aria-haspopup="true" aria-expanded="false"> 커뮤니티 관리 </a>
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item disabled" href="#">공지사항 관리</a> <a
-								class="dropdown-item disabled" href="#">묻고답하기 관리</a> <a
-								class="dropdown-item" href="#">상품평 관리</a>
+							<a class="dropdown-item disabled" href="admin_notice">공지사항 관리</a>
+							<a class="dropdown-item disabled" href="admin_qna">묻고답하기 관리</a> <a
+								class="dropdown-item disabled" href="admin_shopping_review">상품평 관리</a>
+							<a class="dropdown-item disabled" href="admin_cancel">환불 관리</a>
 						</div></li>
+					<li>
+					</li>
 				</ul>
 			</div>
 		</nav>
 	</div>
 
-<div id="blank-box" class="blank-box"></div>
+	<div style="margin-top:180px;" id="blank-box2" class="blank-box2"></div>
 
 <!-- 로그인 섹션 -->
 	<div id="content" class="d-flex flex-row bd-highlight justify-content-center align-center">
@@ -159,18 +192,16 @@ h6 {
             </td>
             </tr>
             <tr>
-            <td>
+            <td colspan="2">
               <button class="btn btn-primary" type="submit">로그인</button>
               </td>
-              <td>
-             <!-- 사용자페이지 --> <a href="#"><button class="btn btn-secondary">사용자 페이지로</a>
-            </td>
           </tr>
         </table>
         </form>
+        <a style="text-align:center;" href="home"><button style="margin-top: 25px;" class="btn btn-secondary">사용자 페이지로</button></a>
 </div>
 	</div>
-
+	
 
 <div class="blank-box"></div>
 

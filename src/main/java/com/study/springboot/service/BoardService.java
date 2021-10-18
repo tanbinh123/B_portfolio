@@ -2,8 +2,10 @@ package com.study.springboot.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
 
 import com.study.springboot.dto.BoardVO;
+import com.study.springboot.dto.BoardVO2;
 
 
 public interface BoardService {
@@ -15,13 +17,13 @@ public interface BoardService {
 	public void write(BoardVO vo) throws Exception;
 
 	// 게시물 조회
-	public BoardVO view(int bno) throws Exception;
+	public BoardVO view(int notice_idx) throws Exception;
 
 	// 게시물 수정
 	public void modify(BoardVO vo) throws Exception;
 	
 	// 게시물 삭제
-	public void delete(int bno) throws Exception;
+	public void delete(int notice_idx) throws Exception;
 	
 	
 	

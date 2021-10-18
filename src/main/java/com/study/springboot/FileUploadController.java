@@ -45,41 +45,52 @@ public class FileUploadController {
 	
 	@Autowired
 	public ShoppingItemsService shoppingItemsService;
-	
-	@RequestMapping(value = "/uploadOk", method = RequestMethod.POST)
-	public @ResponseBody String uploadOk(
-			Model model, 
-			@RequestParam("items_name") String items_name,
-			@RequestParam("items_email") String items_email,
-			@RequestParam("items_title") String items_title,
-			@RequestParam("items_price") int items_price,
-			@RequestParam("items_numb") int items_numb,
-			@RequestParam("items_status") int items_status, 
-			@RequestParam("items_member_idx") int items_member_idx, 
-			@RequestParam("file") MultipartFile file) {
-
-		System.out.println("items_name:" + items_name);
-		System.out.println("items_email:" + items_email);
-		System.out.println("items_title:" + items_title);
-		System.out.println("items_price:" + items_price);
-		System.out.println("items_numb:" + items_numb);
-		System.out.println("items_status:" + items_status);
-		System.out.println("items_member_idx:" + items_member_idx);
-		
-
-		String url = fileUploadService.restore(file);
-
-		String items_img = fileUploadService.items_img_name(file);
-		
-		System.out.println("items_img:" + items_img);
-		
-		int result;
-		result = shoppingItemsService.shopping_items_write(items_img, items_title, items_price, items_numb, items_status, items_name, items_email, items_member_idx);
-		
-		
-		System.out.println("url:" + url);
-		model.addAttribute("url", url);
-		return "파일업로드 성공 - 경로:"+url;
-
-	}
+	/*
+	 * @RequestMapping(value = "/uploadOk", method = RequestMethod.POST)
+	 * public @ResponseBody String uploadOk( Model model,
+	 * 
+	 * @RequestParam("items_name") String items_name,
+	 * 
+	 * @RequestParam("items_email") String items_email,
+	 * 
+	 * @RequestParam("items_title") String items_title,
+	 * 
+	 * @RequestParam("items_price") int items_price,
+	 * 
+	 * @RequestParam("items_numb") int items_numb,
+	 * 
+	 * @RequestParam("items_status") int items_status,
+	 * 
+	 * @RequestParam("items_member_idx") int items_member_idx,
+	 * 
+	 * @RequestParam("file") MultipartFile file) {
+	 * 
+	 * System.out.println("items_name:" + items_name);
+	 * System.out.println("items_email:" + items_email);
+	 * System.out.println("items_title:" + items_title);
+	 * System.out.println("items_price:" + items_price);
+	 * System.out.println("items_numb:" + items_numb);
+	 * System.out.println("items_status:" + items_status);
+	 * System.out.println("items_member_idx:" + items_member_idx);
+	 * 
+	 * 
+	 * String url = fileUploadService.restore(file);
+	 * 
+	 * String items_img = fileUploadService.items_img_name(file); String
+	 * items_status2=""; if(items_status == 1) { items_status2 = "주문 확인 중"; }else
+	 * if(items_status == 2) { items_status2 = "주문 확인"; }else if(items_status == 3)
+	 * { items_status2 = "배송 준비중"; }else if(items_status == 4) { items_status2 =
+	 * "배송 중"; }else if(items_status == 5) { items_status2 = "배송 완료"; }
+	 * System.out.println("items_img:" + items_img);
+	 * 
+	 * int result; result = shoppingItemsService.shopping_items_write(items_img,
+	 * items_title, items_price, items_numb, items_status, items_name, items_email,
+	 * items_member_idx, items_status2);
+	 * 
+	 * 
+	 * System.out.println("url:" + url); model.addAttribute("url", url); return
+	 * "파일업로드 성공 - 경로:"+url;
+	 * 
+	 * }
+	 */
 }

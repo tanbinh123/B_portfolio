@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.springboot.dao.ICartDao">
+
+
+
+	<insert id="addCart"
+		parameterType="com.study.springboot.dto.cartDto">
+
+		insert into shopping_cartItems (cart_idx, cart_img, cart_item_idx,
+		cart_title, cart_price, cart_numb, cart_member_idx,cart_totalPrice,
+		cart_member_id)
+		values (shopping_cartItems_seq.nextval, #{cart_img}, #{cart_item_idx},
+		#{cart_title}, #{cart_price}, #{cart_numb},
+		#{cart_member_idx},#{cart_totalPrice}, #{cart_member_id})
+
+	</insert>
+	<delete id="cart_delete" parameterType="int">
+		delete
+		from shopping_cartItems
+		where cart_idx = #{cart_idx}
+	</delete>
+
+	<delete id="order_cart" parameterType="String">
+		delete
+		from shopping_cartItems
+		where cart_member_id = #{cart_member_id}
+	</delete>
+
+
+	<select id="cart_view"
+		resultType="com.study.springboot.dto.cartDto">
+		select * from shopping_cartItems where cart_member_idx=#{cart_member_idx}
+		order by cart_idx desc
+	</select>
+</mapper>

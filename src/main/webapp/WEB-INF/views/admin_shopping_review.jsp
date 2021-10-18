@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
-	
 
-  <link rel="stylesheet" href="/css/footer.css">
-    <link rel="stylesheet" href="/css/style.css">
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="java.util.ArrayList"%>
+<link rel="stylesheet" href="/css/footer.css">
+<link rel="stylesheet" href="/css/style.css">
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +30,7 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
 	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 	crossorigin="anonymous"></script>
-<title>상품평작성</title>
+<title>상품평관리</title>
 
 <style>
 ul{
@@ -41,12 +43,18 @@ ul{
        color: #754F44;
        font-weight:bold;
    }
-a {
-    color:#EC7357;
+   a {
+	color: #5a5a5a;
 }
+
 a:hover {
-    text-decoration: none;
-    color: #EC7357;
+	text-decoration: none;
+	color: #EC7357;
+}
+
+a:after{
+	text-decoration: none;
+	color:#5a5a5a;
 }
    #writebtn {
       width: 100%;
@@ -102,195 +110,344 @@ html, body {height:100%;}
 #bodyWrap {height:100%;width:auto;}
 
 #footer_wrap {width:100%;height:200px;clear:both;margin-top:300px;}
-</style>
 
+.input{
+	width: 40px;
+	height: 40px;
+	text-align: right;
+	padding-right: 5px;
+	font-weight: bold;
+	border-right: 0px;
+	border-radius: 5px 0px 0px 5px;
+}
+
+.input2{
+	height: 40px;
+	padding-left: 10px;
+}
+
+td>.btn{
+	margin-top: 10px;
+	margin-bottom: -10px;
+	background-color: #4a484b;
+	color: white;
+	width: 130px;
+	height: 38px;
+}
+
+td>.btn:hover{
+	color: white;
+	background-color: #39373a;
+}
+</style>
 </head>
 <body>
-<div id="bodyWrap">
-	<!-- 네비바 -->
-	<div id="Header" class="">
-		<nav class="navbar navbar-expand-md navbar-light">
-			<a class="navbar-brand" href="#"><img id="logo" src="/img/logo.png"></a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarNavDropdown">
-				<ul class="navbar-nav m-auto">
-					<li class="nav-item dropdown active"><a
-						class="nav-link dropdown-toggle" href="#"
-						id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> 주문관리 </a>
-						<div class="dropdown-menu"
-							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="admin_order">주문목록</a>
-						</div></li>
-				</ul>
-				<ul class="navbar-nav m-auto">
-					<li class="nav-item dropdown active"><a
-						class="nav-link dropdown-toggle" href="#"
-						id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> 상품관리 </a>
-						<div class="dropdown-menu"
-							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="#">상품목록</a> <a
-								class="dropdown-item" href="#">상품등록</a>
-						</div></li>
-				</ul>
-				<ul class="navbar-nav m-auto">
-					<li class="nav-item dropdown active"><a
-						class="nav-link dropdown-toggle" href="#"
-						id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> 커뮤니티 관리 </a>
-						<div class="dropdown-menu"
-							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="admin_notice">공지사항 관리</a> <a
-								class="dropdown-item" href="#">묻고답하기 관리</a> <a
-								class="dropdown-item" href="#">상품평 관리</a>
-						</div></li>
+	<%
+						String admin_id = (String) session.getAttribute("admin_id");
+						//null체크
+						if (admin_id != null) { //로그인 상태
+						%>
+	<div id="bodyWrap">
+		<!-- 네비바 -->
+		<div id="Header" class="">
+			<nav class="navbar navbar-expand-md navbar-light">
+				<a class="navbar-brand" href=""><img id="logo"
+					src="/img/logo.png"></a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNavDropdown">
+					<ul class="navbar-nav m-auto">
+						<li class="nav-item dropdown active"><a
+							class="nav-link dropdown-toggle" href="#"
+							id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"> 주문관리 </a>
+							<div class="dropdown-menu"
+								aria-labelledby="navbarDropdownMenuLink">
+								<a class="dropdown-item" href="admin_order">주문목록</a>
+							</div></li>
+					</ul>
+					<ul class="navbar-nav m-auto">
+						<li class="nav-item dropdown active"><a
+							class="nav-link dropdown-toggle" href="#"
+							id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"> 상품관리 </a>
+							<div class="dropdown-menu"
+								aria-labelledby="navbarDropdownMenuLink">
+								<a class="dropdown-item" href="admin_items_list">상품목록</a> <a
+									class="dropdown-item" href="admin_items_add">상품등록</a>
+							</div></li>
+					</ul>
+					<ul class="navbar-nav m-auto">
+						<li class="nav-item dropdown active"><a
+							class="nav-link dropdown-toggle" href="#"
+							id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"> 커뮤니티 관리 </a>
+							<div class="dropdown-menu"
+								aria-labelledby="navbarDropdownMenuLink">
+								<a class="dropdown-item" href="admin_notice">공지사항 관리</a> <a
+									class="dropdown-item" href="admin_qna">묻고답하기 관리</a> <a
+									class="dropdown-item" href="admin_shopping_review">상품평 관리</a> <a
+									class="dropdown-item" href="admin_cancel">환불 관리</a> <a
+									class="dropdown-item" href="admin_memberList">회원 목록</a>
+							</div></li>
 						<li>
-						        <%
-		String admin_id = (String)session.getAttribute("admin_id");
-		//null체크
-		if( admin_id != null) 
-		{   //로그인 상태
-		%>
-			<div class="d-flex justify-content-center "><span class="mt-2 pr-4">관리자님 환영합니다.</span><br><span class="mt-2"><a href="adminLogoutAction">LOGOUT</a></span></div>
-		<%		
-		}
-		else
-		{  //로그아웃 상태
-		%>
-			<div class="mt-2 ml-2"><span class=""><a href="admin">LOGIN</a></span></div>
-		<%
-		}
-		
-		
-		%>  
-		</li>
-				</ul>
-			</div>
-		</nav>
-	</div>
+							<div class="d-flex flex-row pl-3 justify-content-center ">
+								<span class="mt-2 pr-4">관리자님 환영합니다.</span><br> <span
+									class="mt-2"><a href="adminLogoutAction">LOGOUT</a></span>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
 
-	<div id="content" class="d-flex flex-row bd-highlight mb-3">
+		<div id="blank-box2" class="blank-box2"></div>
+
+		<!-- 공지사항 섹션 -->
+
+		<div id="content" class="d-flex flex-row bd-highlight mb-3">
 
 
 			<!-- 사이드바 -->
 			<div id="sidebar sidebar-wrapper col-md-3" class="ml-3">
 				<ul class="border border-warning sidebar-nav pr-5">
-				<li class="text-center sidebar-brand">MENU</li>
-				<li>주문 관리
-					<ul>
-						<li>　<a href="admin_order">주문 목록</a></li>
-					</ul>
-				</li>
-				<li>상품 관리
-					<ul>
-						<li>　<a href="#">상품 목록</a></li>
-						<li>　<a href="#">상품 등록</a></li>
-					</ul>
-				</li>
-				<li>커뮤니티 관리
-					<ul>
-						<li>　<a href="admin_notice">공지사항 관리</a></li>
-						<li>　<a href="#">묻고답하기 관리</a></li>
-						<li>　<a href="#">상품평 관리</a></li>
-					</ul>
-				</li>
-			</ul>
+					<li class="text-center sidebar-brand">MENU</li>
+					<li>주문 관리
+						<ul>
+							<li><a href="admin_order">주문 목록</a></li>
+						</ul>
+					</li>
+					<li>상품 관리
+						<ul>
+							<li><a href="admin_items_list">상품 목록</a></li>
+							<li><a href="admin_items_add">상품 등록</a></li>
+						</ul>
+					</li>
+					<li>커뮤니티 관리
+						<ul>
+							<li><a href="admin_notice">공지사항 관리</a></li>
+							<li><a href="admin_qna">묻고답하기 관리</a></li>
+							<li><a href="admin_shopping_review">상품평 관리</a></li>
+							<li><a href="admin_cancel">환불 관리</a></li>
+							<li><a href="admin_memberList">회원 목록</a></li>
+						</ul>
+					</li>
+				</ul>
 			</div>
 
-			
-    
 
 
-   <div class="main-content container col-md-9 ">
-      <h3>｜상품평 관리</h3>
-      <hr style="border: 1px solid gray; width: 100%;">
-      <div id="search">
-        <select name="" id="">
-          <option value="">제목</option>
-          <option value="">내용</option>
-          <option value="">제목+내용</option>
-          <option value="">작성자</option>
-        </select>
-        <input type="search" name="" id="">
-        <a href="#"><button>검색</button></a>
-      </div>
-      <table class="table">
-        <tbody>
-          <thead>
-            <td width="10%">번호</td>
-            <td width="40%">제목</td>
-            <td width="20%">작성자</td>
-            <td width="30%">작성일</td>
-          </thead>
-          <c:forEach var="qnadto" items="${ reviewlist }">
-            <tr>
-              <td width="10%">{ 번호 }</td>
-              <td width="40%" align="left">
-                <a href="qnaview?qna_idx=${ reviewdto.review_idx }">
-                  ${ reviewdto.review_title }
-                </a>
-              </td>
-              <td width="20%">{ 작성자 }</td>
-              <td width="30%">{ 작성일 }</td>
-            </tr>
-          </c:forEach>
-        </tbody>
-      </table>
-      <div id="writebtn"> <a href="qnawrite"><button id="write">글쓰기</button></a></div>
-      <div id="pagenavigation">
-        <nav aria-label="Page navigation example">
-          <ul class="pagination justify-content-center">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
 
-</div>
+
+			<div class="main-content container col-md-9">
+				<h3>｜상품평관리</h3>
+
+				<!-- 공지사항 검색 -->
+
+				<div id="shoppingSearch" class="shoppingSearch">
+					<select id="searchType" name="searchType">
+						<option value="title"
+							<c:if test="${page.searchType eq 'title'}">selected</c:if>>제목</option>
+						<option value="name"
+							<c:if test="${page.searchType eq 'name'}">selected</c:if>>상품명</option>
+						<option value="content"
+							<c:if test="${page.searchType eq 'content'}">selected</c:if>>내용</option>
+					</select> <input type="search" id="keyword" name="keyword"
+						value="${ keyword }" class="searchbar">
+					<button id="searchButton" class="btn btn-secondary">검색</button>
+				</div>
+				<!-- 주문관리 테이블 -->
+				<table class="table">
+					<thead>
+						<tr>
+
+							<th scope="col">번호</th>
+							<th scope="col">제목</th>
+							<th scope="col">상품명</th>
+							<th scope="col">작성자</th>
+							<th scope="col">작성일</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="dto" items="${ list }">
+							<tr>
+								<td>${ dto.review_idx }</td>
+								<td><a
+									href="admin_shopping_review_view?review_idx=${ dto.review_idx }"><img style="width:80px; height:80px;" src="/upload/${ dto.review_img }">${dto.review_title}</a></td>
+								<td>${ dto.review_items }</td>
+								<td>${ dto.review_member_id }</td>
+								<td><fmt:formatDate value="${ dto.review_date }"
+										pattern="yyyy.MM.dd" /></td>
+
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+
+
+				<!-- 페이지 네비게이션 -->
+
+				<div style="display: block; text-align: center;">
+
+
+					<c:if test="${page.prev}">
+						<span>[ <a
+							href="/admin_shopping_review?num=${page.startPageNum - 1}${page.searchTypeKeyword}">이전</a>
+							]
+						</span>
+					</c:if>
+
+					<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}"
+						var="num">
+						<span> <c:if test="${select != num}">
+								<a href="/admin_shopping_review?num=${num}${page.searchTypeKeyword}">${num}</a>
+							</c:if> <c:if test="${select == num}">
+								<b>${num}</b>
+							</c:if>
+
+						</span>
+					</c:forEach>
+
+					<c:if test="${page.next}">
+						<span>[ <a
+							href="/admin_shopping_review?num=${page.endPageNum + 1}${page.searchTypeKeyword}">다음</a>
+							]
+						</span>
+					</c:if>
+
+
+
+				</div>
+			</div>
+		</div>
+
+<script>
+	document.getElementById("searchButton").onclick = function() {
+
+		let searchType = document.getElementsByName("searchType")[0].value;
+		let keyword = document.getElementsByName("keyword")[0].value;
+
+		location.href = "/admin_shopping_review?num=1" + "&searchType=" + searchType
+				+ "&keyword=" + keyword;
+	};
+</script>
 
 		<!-- 푸터 -->
-  <footer>
-    <!-- footer -->
-    <div id="footer_wrap" class="container-fluid align-center">
-      <div id="footerin">
-        <div class="anchor">
-          <a href="company">회사소개</a><span>|</span>
-          <a href="#">개인정보보호정책</a><span>|</span>
-          <a href="#">이메일무단수집거부</a><span>|</span>
-          <a href="qna">묻고답하기</a>
-        </div>
-        <div>
-          <p>회사 : 노원이젠, 주소 : 서울시 노원구 상계동 화랑빌딩 4층, 대표 : 홍길동.</p>
-          <p>고객지원 : 010-2222-3333, FAX : 070-888-5555, EMAIL : support@gmail.com,
-              사업자등록번호 : 100-02-00033, 통신판매업 : 제1111-경기-00000호</p>
-          <p>COPYRIGHT(C) 2021 NOWON_EZEN. ALL RIGHT RESERVED.</p>
-        </div>
-        <div>
-          <img src="http://bdmp-004.cafe24.com/bizdemo99969/img/common/mf-icon01.png" alt="">
-          <img src="http://bdmp-004.cafe24.com/bizdemo99969/img/common/mf-icon02.png" alt="">
-          <img src="http://bdmp-004.cafe24.com/bizdemo99969/img/common/mf-icon03.png" alt="">
-          <img src="http://bdmp-004.cafe24.com/bizdemo99969/img/common/mf-icon04.png" alt="">
-        </div>
-      </div>
-    </div>
-  </footer>
-  </div>
+
+		<div class="blank-box"></div>
+
+		<div class="footer01"></div>
+		<div class="footer02">
+			<div class="address">
+				회사 : 노원이젠, 주소 : 서울시 노원구 상계동 화랑빌딩 4층, 대표 : 홍길동, <br> 고객지원 :
+				010-2222-3333, FAX : 070-888-5555, EMAIL : support@gmail.com,
+				사업자등록번호 : 100-02-00033, 통신판매업 : 제1111-경기-00000호
+			</div>
+			<div class="copy">COPYRIGHT(C) 2021 NOWON_EZEN. ALL RIGHT
+				RESERVED.</div>
+		</div>
+	</div>
 </body>
+<%
+ } else { //로그아웃 상태
+ %>
+<!-- 네비바 -->
+<div id="Header" class="">
+	<nav class="navbar navbar-expand-md navbar-light">
+		<a class="navbar-brand" href=""><img id="logo" src="/img/logo.png"></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavDropdown">
+			<ul class="navbar-nav m-auto">
+				<li class="nav-item dropdown active"><a
+					class="nav-link dropdown-toggle" href="#"
+					id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false"> 주문관리 </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item disabled" href="admin_order">주문목록</a>
+					</div></li>
+			</ul>
+			<ul class="navbar-nav m-auto">
+				<li class="nav-item dropdown active"><a
+					class="nav-link dropdown-toggle" href="#"
+					id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false"> 상품관리 </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item disabled" href="admin_items_list">상품목록</a>
+						<a class="dropdown-item disabled" href="admin_items_add">상품등록</a>
+					</div></li>
+			</ul>
+			<ul class="navbar-nav m-auto">
+				<li class="nav-item dropdown active"><a
+					class="nav-link dropdown-toggle" href="#"
+					id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false"> 커뮤니티 관리 </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item disabled" href="admin_notice">공지사항 관리</a>
+						<a class="dropdown-item disabled" href="admin_qna">묻고답하기 관리</a> <a
+							class="dropdown-item disabled" href="admin_shopping_review">상품평
+							관리</a> <a class="dropdown-item disabled" href="admin_cancel">환불
+							관리</a>
+					</div></li>
+				<li></li>
+			</ul>
+		</div>
+	</nav>
+</div>
+
+<div style="margin-top: 180px;" id="blank-box2" class="blank-box2"></div>
+
+<!-- 로그인 섹션 -->
+<div id="content"
+	class="d-flex flex-row bd-highlight justify-content-center align-center">
+	<div class="">
+		<form action="Admin-LoginAction" method="post"
+			name="Admin-loginAction">
+			<table class="main1" style="text-align: center;">
+				<tr>
+					<td>아이디<br> 비밀번호
+					</td>
+					<td><input type="text" id="admin_id" name="admin_id"><br>
+						<input type="password" id="admin_pw" name="admin_pw"></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<button class="btn btn-primary" type="submit">로그인</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+		<a style="text-align: center;" href="home"><button
+				style="margin-top: 25px;" class="btn btn-secondary">사용자
+				페이지로</button></a>
+	</div>
+</div>
+
+
+<div class="blank-box"></div>
+
+<!-- 푸터 -->
+
+<div class="footer01"></div>
+<div class="footer02">
+	<div class="address">
+		회사 : 노원이젠, 주소 : 서울시 노원구 상계동 화랑빌딩 4층, 대표 : 홍길동, <br> 고객지원 :
+		010-2222-3333, FAX : 070-888-5555, EMAIL : support@gmail.com, 사업자등록번호
+		: 100-02-00033, 통신판매업 : 제1111-경기-00000호
+	</div>
+	<div class="copy">COPYRIGHT(C) 2021 NOWON_EZEN. ALL RIGHT
+		RESERVED.</div>
+</div>
+
+</body>
+<%
+ }
+ %>
 </html>

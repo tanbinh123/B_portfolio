@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- SQL 끝에 ; 세미콜론을 넣지 마세요! -->
+
+<mapper namespace="com.study.springboot.dao.IShoppingReplyDao"> 
+	
+	<select id="s_reply_list" resultType="com.study.springboot.dto.ShoppingReplyDto"> 
+		SELECT * FROM s_reply WHERE s_reply_board_idx=#{param1} order by s_reply_date desc
+	</select>
+   
+   <insert id="s_reply">
+	  <selectKey keyProperty="id" resultType="int" order="BEFORE">
+	        select s_reply_board_seq.nextval FROM DUAL
+	  </selectKey>
+      INSERT INTO s_reply(s_reply_idx, s_reply_content, s_reply_date, s_reply_board_idx) VALUES (#{id}, #{param1}, sysdate, #{param2})
+   </insert>
+   
+   <delete id="s_reply_delete">
+		DELETE FROM s_reply where s_reply_idx=#{param1}
+	</delete>
+   
+	
+</mapper>

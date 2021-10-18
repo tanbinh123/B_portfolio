@@ -63,7 +63,7 @@ public class FileUploadService {
 	
 	
 	// 현재 시간을 기준으로 파일 이름 생성
-	private String genSaveFileName(String extName) {
+	public String genSaveFileName(String extName) {
 		String fileName = "";
 		
 		Calendar calendar = Calendar.getInstance();

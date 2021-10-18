@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 import com.study.springboot.dao.BoardDAO;
 import com.study.springboot.dto.BoardVO;
 
+
 @Service
 public class BoardServiceImpl implements BoardService {
 
-
-	@Autowired(required=false)
+	@Autowired
 	private BoardDAO dao;
 	
 	// 게시물 목록
@@ -31,9 +31,9 @@ public class BoardServiceImpl implements BoardService {
 
 	// 게시물 조회
 	@Override
-	public BoardVO view(int bno) throws Exception {
+	public BoardVO view(int notice_idx) throws Exception {
 
-		return dao.view(bno);
+		return dao.view(notice_idx);
 	}
 
 	// 게시물 수정
@@ -45,8 +45,8 @@ public class BoardServiceImpl implements BoardService {
 
 	// 게시물 삭제
 	@Override
-	public void delete(int bno) throws Exception {
-		dao.delete(bno);
+	public void delete(int notice_idx) throws Exception {
+		dao.delete(notice_idx);
 	}
 
 	

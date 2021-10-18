@@ -1,5 +1,7 @@
 package com.study.springboot.dto;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -15,6 +17,8 @@ public class shoppingItemsDto {
 	public String	    items_name;
 	public String	    items_email;
 	public int		    items_member_idx;
+	public String 		items_status2;
+	public int			items_order_idx;
 	
 	public shoppingItemsDto() {
 		
@@ -22,7 +26,7 @@ public class shoppingItemsDto {
 	
 	
 	public shoppingItemsDto(int items_idx, String items_img, String items_title, int items_price, int items_numb,
-			int items_status, String items_name, String items_email, int items_member_idx) {
+			int items_status, String items_name, String items_email, int items_member_idx, String items_status2, int items_order_idx) {
 		super();
 		this.items_idx = items_idx;
 		this.items_img = items_img;
@@ -33,7 +37,10 @@ public class shoppingItemsDto {
 		this.items_name = items_name;
 		this.items_email = items_email;
 		this.items_member_idx = items_member_idx;
-	}   
-	
+		this.items_status2 = items_status2;
+		this.items_order_idx = items_order_idx;
+	}
+
+
 	
 }

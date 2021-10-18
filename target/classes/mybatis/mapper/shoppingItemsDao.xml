@@ -6,19 +6,35 @@
 
 <mapper namespace="com.study.springboot.dao.IShoppingItemsDao">
 
-	<insert id="shopping_items_write"
-		parameterType="com.study.springboot.dto.shoppingItemsDto">
-
-		insert into shopping_items (items_idx, items_img, items_title, items_price,
-		items_numb, items_status, items_name, items_email, items_member_idx)
-		values (shopping_items_seq.nextval, #{items_img},
-		#{items_title}, #{items_price}, #{items_numb}, #{items_status},
-		#{items_name}, #{items_email}, #{items_member_idx})
 
 
-	</insert>
-	
-	<select id="admin_order_list" resultType="com.study.springboot.dto.shoppingItemsDto"> 
+<insert id="order_insert2" parameterType="com.study.springboot.dto.shoppingItemsDto">
+	insert into shopping_items (items_idx, items_title, items_price, items_status, items_status2, items_member_idx, items_order_idx)
+	values (shopping_items_seq.nextval , #{items_title}, #{items_price}, #{items_status},  #{items_status2},#{items_member_idx},shopping_items_seq.nextval)
+</insert>
+
+	<select id="user_order_list"
+		resultType="com.study.springboot.dto.shoppingItemsDto">
+		select * from shopping_items where items_member_idx = #{items_member_idx} order by items_idx desc
+	</select>
+
+	<select id="admin_order_list"
+		resultType="com.study.springboot.dto.shoppingItemsDto">
 		select * from shopping_items order by items_idx desc
 	</select>
+	<update id="order_status">
+		update shopping_items set items_status=#{param2},
+		items_status2=#{param3} where items_idx=#{param1}
+	</update>
+
+
+
+	<select id="admin_order_view"
+		resultType="com.study.springboot.dto.shoppingItemsDto">
+		select * from shopping_items where items_idx=#{param1}
+	</select>
+
+	<delete id="admin_order_delete">
+		delete from shopping_items where items_idx=#{param1}
+	</delete>
 </mapper>

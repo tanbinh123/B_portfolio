@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="java.util.ArrayList"%>
 
 
 <link rel="stylesheet" href="/css/footer.css">
@@ -31,6 +34,11 @@
 <title>주문관리</title>
 
 <style>
+#itemImg {
+	width: 100px;
+	height: 60px;
+}
+
 ul {
 	list-style: none;
 }
@@ -43,19 +51,27 @@ body {
 	font-family: 'Gowun Batang', serif;
 	font-weight: bold;
 }
-td > input {
-	margin-bottom:5px;
+
+td>input {
+	margin-bottom: 5px;
 }
+
 select {
-margin-left: 5px;
+	margin-left: 5px;
 }
+
 a {
-	color: #EC7357;
+	color: #5a5a5a;
 }
 
 a:hover {
 	text-decoration: none;
 	color: #EC7357;
+}
+
+a:after{
+	text-decoration: none;
+	color:#5a5a5a;
 }
 
 .sidebar-nav {
@@ -84,19 +100,55 @@ h6 {
 	color: 754F44;
 	font-weight: bold;
 }
+
 #goto {
 	width: 150%;
 	height: 150%;
 }
+
+/* 로그인 */
+
+.input{
+	width: 40px;
+	height: 40px;
+	text-align: right;
+	padding-right: 5px;
+	font-weight: bold;
+	border-right: 0px;
+	border-radius: 5px 0px 0px 5px;
+}
+
+.input2{
+	height: 40px;
+	padding-left: 10px;
+}
+
+td>.btn{
+	margin-top: 10px;
+	margin-bottom: -10px;
+	background-color: #4a484b;
+	color: white;
+	width: 130px;
+	height: 38px;
+}
+
+td>.btn:hover{
+	color: white;
+	background-color: #39373a;
+}
+
 </style>
 
 </head>
-<body>
-
+<body>	<%
+						String admin_id = (String) session.getAttribute("admin_id");
+						//null체크
+						if (admin_id != null) { //로그인 상태
+						%>
 	<!-- 네비바 -->
 	<div id="Header" class="">
 		<nav class="navbar navbar-expand-md navbar-light">
-			<a class="navbar-brand" href="#"><img id="logo"
+			<a class="navbar-brand" href=""><img id="logo"
 				src="/img/logo.png"></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
@@ -121,8 +173,8 @@ h6 {
 						aria-haspopup="true" aria-expanded="false"> 상품관리 </a>
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="#">상품목록</a> <a
-								class="dropdown-item" href="#">상품등록</a>
+							<a class="dropdown-item" href="admin_items_list">상품목록</a> <a
+								class="dropdown-item" href="admin_items_add">상품등록</a>
 						</div></li>
 				</ul>
 				<ul class="navbar-nav m-auto">
@@ -133,33 +185,25 @@ h6 {
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenuLink">
 							<a class="dropdown-item" href="admin_notice">공지사항 관리</a> <a
-								class="dropdown-item" href="#">묻고답하기 관리</a> <a
-								class="dropdown-item" href="#">상품평 관리</a>
+								class="dropdown-item" href="admin_qna">묻고답하기 관리</a> <a
+								class="dropdown-item" href="admin_shopping_review">상품평 관리</a> <a
+								class="dropdown-item" href="admin_cancel">환불 관리</a> <a
+								class="dropdown-item" href="admin_memberList">회원 목록</a>
 						</div></li>
-												<li>
-						        <%
-		String admin_id = (String)session.getAttribute("admin_id");
-		//null체크
-		if( admin_id != null) 
-		{   //로그인 상태
-		%>
-			<div class="d-flex flex-row pl-3 justify-content-center "><span class="mt-2 pr-4">관리자님 환영합니다.</span><br><span class="mt-2"><a href="adminLogoutAction">LOGOUT</a></span></div>
-		<%		
-		}
-		else
-		{  //로그아웃 상태
-		%>
-			<div class="mt-2 ml-2"><span class=""><a href="admin">LOGIN</a></span></div>
-		<%
-		}
-		
-		
-		%>  
-		</li>
+					<li>
+						<div class="d-flex flex-row pl-3 justify-content-center ">
+							<span class="mt-2 pr-4">관리자님 환영합니다.</span><br> <span
+								class="mt-2"><a href="adminLogoutAction">LOGOUT</a></span>
+						</div>
+					</li>
 				</ul>
 			</div>
 		</nav>
 	</div>
+
+	<div id="blank-box2" class="blank-box2"></div>
+
+	<!-- 공지사항 섹션 -->
 
 	<div id="content" class="d-flex flex-row bd-highlight mb-3">
 
@@ -170,89 +214,108 @@ h6 {
 				<li class="text-center sidebar-brand">MENU</li>
 				<li>주문 관리
 					<ul>
-						<li><a href="admin_order">　주문 목록</a></li>
+						<li><a href="admin_order">주문 목록</a></li>
 					</ul>
 				</li>
 				<li>상품 관리
 					<ul>
-						<li><a href="#">　상품 목록</a></li>
-						<li><a href="#">　상품 등록</a></li>
+						<li><a href="admin_items_list">상품 목록</a></li>
+						<li><a href="admin_items_add">상품 등록</a></li>
 					</ul>
 				</li>
 				<li>커뮤니티 관리
 					<ul>
-						<li><a href="admin_notice">　공지사항 관리</a></li>
-						<li><a href="#">　묻고답하기 관리</a></li>
-						<li><a href="#">　상품평 관리</a></li>
+						<li><a href="admin_notice">공지사항 관리</a></li>
+						<li><a href="admin_qna">묻고답하기 관리</a></li>
+						<li><a href="admin_shopping_review">상품평 관리</a></li>
+						<li><a href="admin_cancel">환불 관리</a></li>
+						<li><a href="admin_memberList">회원 목록</a></li>
 					</ul>
 				</li>
 			</ul>
 		</div>
 
 		<!-- 메인 -->
-		
+
 		<!-- 주문서 관리 테이블 -->
 		<div class="main-content container col-md-9 m-5">
 			<div class="justify-content-center">
 				<h4>주문서 관리</h4>
+				<form action="order_status?items_idx=${dto.items_idx }" method="post">
 				<table class="table table-borderless table-1 text-center">
 					<tr>
-						<td class="table1">주문일: {주문일}</td>
-						<td class="table1">주문고객: {고객명} ID: {고객ID}</td>
-						<td class="table1">주문번호: {주문번호}</td>
+						<td class="table1">주문고객: ${dto.items_title}</td>
+						<td class="table1">주문번호: ${dto.items_idx}</td>
 					</tr>
 					<tr>
-						<td class="table1">결제상태: <select name="pay">
-								<option value="입금전">입금전</option>
-								<option value="결제완료">결제완료</option>
+						<td class="table1">주문처리상태:${ status }</td>
+						<td>주문처리상태 변경 <select id="statusSelect" name="statusSelect"
+							name="pay">
+								<option value="status1">주문 확인 중</option>
+								<option value="status2">주문 확인</option>
+								<option value="status3">배송 준비 중</option>
+								<option value="status4">배송 중</option>
+								<option value="status5">배송완료</option>
 						</select></td>
-						<td class="table1">주문처리상태: <select name="pay">
-								<option value="주문 확인 전">주문 확인 전</option>
-								<option value="배송 준비 중">배송 준비 중</option>
-								<option value="배송 중">배송 중</option>
-								<option value="배송완료">배송완료</option>
-						</select></td>
-						</td>
-						<td class="table1"><input type="submit" value="   상태 변경   "><br><input type="button" value="주문 취소하기"></td>
+						<td class="table1"><input id="statusBtn" name="statusBtn"
+							type="submit" class="btn btn-primary" value="   상태 변경   "><br>
+					</td>
 					</tr>
 
 				</table>
+		</form>
 			</div>
-			
 			<!-- 주문상품목록 테이블 -->
 			<div class="">
 				<br>
 				<h4>주문 상품</h4>
-				<table class="table">
-					<thead>
-						<tr class="tablehead">
-							<th scope="col">번호</th>
-							<th scope="col"></th>
-							<th scope="col">상품정보</th>
-							<th scope="col">수량</th>
-							<th scope="col">합계금액</th>
-						</tr>
-					</thead>
-					<tbody>
+				<table style="text-align: center;" class="table table-bordered">
+					<tr>
+						<td scope="col">주문번호</td>
+						<td scope="col">상품명</td>
+						<td scope="col">상품가격</td>
+						<td scope="col">개수</td>
+						<td scope="col">총금액</td>
+
+					</tr>
+					<c:set var="total" value="0" />
+					<c:forEach items="${ order_view }" var="dto">
 						<tr>
-							<th scope="row">2</th>
-							<td>image삽입</td>
-							<td>{상품명}</td>
-							<td>{개수}개</td>
-							<td>{상품가격}*{개수}원</td>
+							<td></td>
+							<td><img style="width: 150px; height: 100px;"
+								src="/upload/${dto.order_img }">${dto.order_title } <input
+								type="hidden" id="cart_title" name="cart_title"
+								value="${ cart_list.cart_title }"> <input type="hidden"
+								id="cart_img" name="cart_img" value="${ cart_list.cart_img }">
+								<input type="hidden" id="cart_price" name="cart_price"
+								value="${ cart_list.cart_price }"> <input type="hidden"
+								id="cart_numb" name="cart_numb" value="${ cart_list.cart_numb }">
+								<input type="hidden" id="cart_totalPrice" name="cart_totalPrice"
+								value="${ cart_list.cart_totalPrice }"></td>
+							<td>${ dto.order_price }</td>
+							<td>${ dto.order_numb }</td>
+							<td>${ dto.order_totalPrice }</td>
+
+							<c:set var="total" value="${total + dto.order_totalPrice}" />
 						</tr>
-						<tr>
-							<th scope="row">1</th>
-							<td>image삽입</td>
-							<td>{상품명}</td>
-							<td>{개수}개</td>
-							<td>{상품가격}*{개수}원</td>
-						</tr>
-					</tbody>
+
+					</c:forEach>
+					<tr>
+						<td style="text-align: right;" colspan="4">합계 금액 :</td>
+						<td><input type="hidden" id="total" name="total"
+							value="${total}">
+						<c:out value="${total}" /></td>
+
+					</tr>
+
+					<tr>
+						<td colspan="5"></td>
+					</tr>
+
 				</table>
 			</div>
-			
-			
+
+
 			<!-- 주문자 정보 테이블 -->
 			<div class="">
 				<br>
@@ -262,17 +325,24 @@ h6 {
 				<table class="table">
 					<tbody>
 						<tr>
-							<th scope="row" class="text-center">이름</th>
-							<td><input type="text" value="{주문자명}" readonly></td>
-						</tr>
-						<tr>
-							<th scope="row" class="text-center">이메일주소</th>
-							<td><input type="text" value="{이메일주소}" readonly></td>
+<td>주문자 성함 : ${ userDto.orderInfo_name }
+					<br/> 연락처: ${ userDto.orderInfo_phone } <br />
+					우편번호 : ${ userDto.orderInfo_addressNumb }
+					상세 주소 : ${ userDto.orderInfo_address } ${ userDto.orderInfo_address_detail } ${ userDto.orderInfo_address_extra } <br />
+					결제 방식 : ${ userDto.orderInfo_status }</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
-			<div class="d-flex justify-content-center"><a href="admin_order"><input id="goto" type="button" value="목록으로"></a></div>
+			<div class="d-flex justify-content-center">
+			
+			
+	<a href="admin_order_delete?items_idx=${ dto.items_idx }&items_order_idx=${dto.items_order_idx}"><input
+								type="button" class="btn btn-primary" value="주문 취소하기"></a>
+								<span style="margin-right:50px;"></span>
+				<a href="admin_order"><input class="btn btn-secondary" type="button"
+					value="목록으로"></a>
+			</div>
 
 		</div>
 
@@ -291,6 +361,118 @@ h6 {
 		<div class="copy">COPYRIGHT(C) 2021 NOWON_EZEN. ALL RIGHT
 			RESERVED.</div>
 	</div>
+	<script>
+		document.getElementById("statusBtn").onclick = function() {
 
+			let statusSelect = document.getElementsByName("statusSelect")[0].value;
+			var items_idx = $
+			{
+				dto.items_idx
+			}
+			location.href = "/order_status?statusSelect=" + statusSelect
+					+ "&items_idx=" + items_idx
+		};
+	</script>
 </body>
+ <%
+ } else { //로그아웃 상태
+ %>
+	<!-- 네비바 -->
+	<div id="Header" class="">
+		<nav class="navbar navbar-expand-md navbar-light">
+			<a class="navbar-brand" href=""><img id="logo"
+				src="/img/logo.png"></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavDropdown">
+				<ul class="navbar-nav m-auto">
+					<li class="nav-item dropdown active"><a
+						class="nav-link dropdown-toggle" href="#"
+						id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false"> 주문관리 </a>
+						<div class="dropdown-menu"
+							aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item disabled" href="admin_order">주문목록</a>
+						</div></li>
+				</ul>
+				<ul class="navbar-nav m-auto">
+					<li class="nav-item dropdown active"><a
+						class="nav-link dropdown-toggle" href="#"
+						id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false"> 상품관리 </a>
+						<div class="dropdown-menu"
+							aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item disabled" href="admin_items_list">상품목록</a> <a
+								class="dropdown-item disabled" href="admin_items_add">상품등록</a>
+						</div></li>
+				</ul>
+				<ul class="navbar-nav m-auto">
+					<li class="nav-item dropdown active"><a
+						class="nav-link dropdown-toggle" href="#"
+						id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false"> 커뮤니티 관리 </a>
+						<div class="dropdown-menu"
+							aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item disabled" href="admin_notice">공지사항 관리</a>
+							<a class="dropdown-item disabled" href="admin_qna">묻고답하기 관리</a> <a
+								class="dropdown-item disabled" href="admin_shopping_review">상품평 관리</a>
+							<a class="dropdown-item disabled" href="admin_cancel">환불 관리</a>
+						</div></li>
+					<li>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+
+	<div style="margin-top:180px;" id="blank-box2" class="blank-box2"></div>
+
+<!-- 로그인 섹션 -->
+	<div id="content" class="d-flex flex-row bd-highlight justify-content-center align-center">
+<div class="">
+    <form action="Admin-LoginAction" method="post" name="Admin-loginAction">
+        <table class="main1" style="text-align: center;">
+          <tr>
+            <td>
+              아이디<br>
+              비밀번호
+            </td>
+            <td>
+              <input type="text" id="admin_id" name="admin_id"><br>
+              <input type="password" id="admin_pw" name="admin_pw">
+            </td>
+            </tr>
+            <tr>
+            <td colspan="2">
+              <button class="btn btn-primary" type="submit">로그인</button>
+              </td>
+          </tr>
+        </table>
+        </form>
+        <a style="text-align:center;" href="home"><button style="margin-top: 25px;" class="btn btn-secondary">사용자 페이지로</button></a>
+</div>
+	</div>
+	
+
+<div class="blank-box"></div>
+
+	<!-- 푸터 -->
+
+	<div class="footer01"></div>
+	<div class="footer02">
+		<div class="address">
+			회사 : 노원이젠, 주소 : 서울시 노원구 상계동 화랑빌딩 4층, 대표 : 홍길동, <br> 고객지원 :
+			010-2222-3333, FAX : 070-888-5555, EMAIL : support@gmail.com, 사업자등록번호
+			: 100-02-00033, 통신판매업 : 제1111-경기-00000호
+		</div>
+		<div class="copy">COPYRIGHT(C) 2021 NOWON_EZEN. ALL RIGHT
+			RESERVED.</div>
+	</div>
+
+</body> <%
+ }
+ %>
 </html>

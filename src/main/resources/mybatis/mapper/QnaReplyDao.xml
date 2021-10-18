@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.springboot.dao.IQnaReplyDao"> 
+
+	<select id="qna_reply_list" resultType="com.study.springboot.dto.QnaReplyDto"> 
+		select * from shopping_qna_reply where reply_qna_idx=#{param1} order by reply_date desc
+	</select>
+	
+	<insert id="qna_reply"> 
+		<selectKey keyProperty="id" resultType="int" order="BEFORE">
+	        select shopping_qna_reply_seq.nextval FROM DUAL
+	  	</selectKey>
+      	insert into shopping_qna_reply (reply_idx, reply_content, reply_date, reply_qna_idx)
+           values (#{id}, #{param1}, sysdate, #{param2})
+	</insert>
+	
+	<delete id="qna_reply_delete">
+		delete from shopping_qna_reply where reply_idx=#{param1}
+	</delete>
+	
+</mapper>

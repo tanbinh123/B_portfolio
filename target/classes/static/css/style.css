@@ -4,6 +4,56 @@
 	padding-right: 0px;
 	
 }
+.view-class {
+	padding:25px;
+}
+
+#cartViewDiv {
+	
+	background-color: white;
+}
+
+.itemcontent {
+		background-color: white;
+}
+
+body {
+	
+	background-color: white;
+}
+
+#int-body {
+	
+	background-color: white;
+}
+
+.companySection2 {
+	background-color: white;
+}
+.companySection3
+{
+	
+	background-color: white;
+}
+
+.companySection4 {
+	
+	background-color: white;
+}
+ul.sidebar-nav a {
+	margin-left: 20px;
+	
+}
+div.top {
+	display: flex;
+	text-align: right;
+	
+}
+
+.spanBlank {
+	margin-right: 220px;
+}
+
 #notice_write_div {
 	margin-top:20px;
 	margin-bottom:20px;
@@ -74,6 +124,10 @@ a:hover {
     text-decoration: none;
     color: #754F44;
 }
+div#mainItems td {
+
+}
+
 .margin-top {
     margin-top: 20px;
 }

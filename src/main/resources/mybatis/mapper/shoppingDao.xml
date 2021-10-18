@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.springboot.dao.IShoppingDao"> 
+
+	<insert id="admin_shopping_review_write" parameterType="com.study.springboot.dto.shoppingDto"> 
+		insert into shopping_review (review_idx, review_title,review_items ,review_content, review_date, review_member_id, review_img) values(shopping_review_seq.nextval, #{review_title},#{review_items}, #{review_content}, sysdate, #{review_member_id}, #{review_img})
+	</insert>
+	
+	<delete id="admin_shopping_review_delete">
+		delete from shopping_review where review_idx=#{param1}
+	</delete>
+	
+	<select id="admin_shopping_review_list" resultType="com.study.springboot.dto.shoppingDto"> 
+		select * from shopping_review order by review_idx desc
+	</select>
+	
+	<select id="admin_shopping_review_view" resultType="com.study.springboot.dto.shoppingDto"> 
+		select * from shopping_review where review_idx=#{param1}
+	</select>	
+	
+		<update id="admin_shopping_review_modify">
+		update shopping_review set review_title=#{param2}, review_content=#{param3}, review_items=#{param4}, review_date= sysdate, review_img = #{param5} where review_idx=#{param1}
+	</update>
+	
+</mapper>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.springboot.dao.MemberDao2"> 
+
+	
+
+ <sql id="search">
+		<if test="searchType != null">
+			<if test='searchType.equals("id")'>
+				WHERE member_id LIKE CONCAT('%' || #{keyword},  '%')
+			</if>
+			<if test='searchType.equals("name")'>
+				WHERE member_name like CONCAT('%' || #{keyword},  '%')
+			</if>
+			<if test='searchType.equals("idName")'>
+				WHERE member_id LIKE CONCAT('%'|| #{keyword},  '%')
+				or member_name LIKE CONCAT('%'|| #{keyword},  '%')
+			</if>
+		</if>
+	</sql>
+
+
+ 
+	<!-- 게시물 목록 + 페이징 + 검색 -->
+ 	<select id="listPageSearch"
+		resultType="com.study.springboot.dto.memberDto">
+		SELECT * FROM(
+		SELECT ROWNUM AS RNUM, A.*
+		FROM(SELECT *
+		FROM shopping_member
+		<include refid="search"></include>	
+		ORDER BY member_idx DESC)
+		
+		A WHERE ROWNUM <![CDATA[ <= ]]>
+		#{displayPost} + #{postNum}
+		)
+		WHERE RNUM <![CDATA[ > ]]>
+		#{displayPost}
+	</select>
+	<!-- 게시물 총 갯수 + 검색 적용 -->
+	<select id="searchCount" parameterType="hashMap"
+		resultType="int">
+		select count(*) from shopping_member
+<include refid="search"></include>
+	</select>
+	
+ 
+</mapper>

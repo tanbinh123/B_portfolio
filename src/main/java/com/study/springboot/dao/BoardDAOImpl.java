@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.study.springboot.dto.BoardVO;
 
+
+
 @Repository
 public class BoardDAOImpl implements BoardDAO {
 
@@ -33,10 +35,9 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	// 게시물 조회
-	@Override
-	public BoardVO view(int bno) throws Exception {
+	public BoardVO view(int notice_idx) throws Exception {
 	
-		return sql.selectOne(namespace + ".view", bno);
+		return sql.selectOne(namespace + ".view", notice_idx);
 	}
 
 	// 게시물 수정
@@ -47,8 +48,8 @@ public class BoardDAOImpl implements BoardDAO {
 
 	// 게시물 삭제
 	@Override
-	public void delete(int bno) throws Exception {
-		sql.delete(namespace + ".delete", bno);
+	public void delete(int notice_idx) throws Exception {
+		sql.delete(namespace + ".delete", notice_idx);
 	}
 
 	
@@ -93,7 +94,7 @@ public class BoardDAOImpl implements BoardDAO {
 	
 	// 게시물 총 갯수 + 검색 적용
 	@Override
-	public int searchCount(String searchType, String keyword) {
+	public int searchCount(String searchType, String keyword) throws Exception {
 		
 		HashMap<String, Object> data = new HashMap<String, Object>();
 		

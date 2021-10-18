@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.springboot.dao.OrderInfoDao">
+
+
+
+<insert id="orderInfo_insert" parameterType="com.study.springboot.dto.orderInfoDto">
+	    
+     
+    insert into shopping_orderInfo(orderInfo_idx, orderInfo_addressNumb, orderInfo_address, orderInfo_address_detail, orderInfo_address_extra, orderInfo_status,orderInfo_name, orderInfo_phone, orderInfo_member_id)
+    values(shopping_orderInfo_seq.nextval, #{orderInfo_addressNumb}, #{orderInfo_address}, #{orderInfo_address_detail}, #{orderInfo_address_extra}, #{orderInfo_status},#{orderInfo_name},#{orderInfo_phone},#{orderInfo_member_id})
+    
+</insert>
+
+
+
+	<select id="orderInfo_view"
+		resultType="com.study.springboot.dto.orderInfoDto">
+		select * from shopping_orderInfo where orderInfo_idx=#{param1}
+	</select>
+
+	<delete id="orderInfo_delete">
+		delete from shopping_orderInfo where orderInfo_idx=#{param1}
+	</delete>
+</mapper>

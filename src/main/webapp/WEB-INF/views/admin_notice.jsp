@@ -21,6 +21,8 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
 	crossorigin="anonymous">
+
+	
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
@@ -69,12 +71,17 @@ select {
 }
 
 a {
-	color: #EC7357;
+	color: #5a5a5a;
 }
 
 a:hover {
 	text-decoration: none;
 	color: #EC7357;
+}
+
+a:after{
+	text-decoration: none;
+	color:#5a5a5a;
 }
 
 .sidebar-nav {
@@ -108,11 +115,295 @@ h6 {
 	width: 150%;
 	height: 150%;
 }
+
+#notice_write{
+	background-color: white;
+	border: 1px solid rgb(182, 182, 182);
+	border-radius: 5px;
+	width: 80px;
+	height: 35px;
+	margin-bottom: -10px;
+	margin-right: 10px;
+}
+
+#notice_write:hover{
+	background-color: #754f44;
+	color: #fbffb9;
+}
+
+#keyword{
+	padding-left: 5px;
+}
+
+/* 로그인 */
+
+.input{
+	width: 40px;
+	height: 40px;
+	text-align: right;
+	padding-right: 5px;
+	font-weight: bold;
+	border-right: 0px;
+	border-radius: 5px 0px 0px 5px;
+}
+
+.input2{
+	height: 40px;
+	padding-left: 10px;
+}
+
+td>.btn{
+	margin-top: 10px;
+	margin-bottom: -10px;
+	background-color: #4a484b;
+	color: white;
+	width: 130px;
+	height: 38px;
+}
+
+td>.btn:hover{
+	color: white;
+	background-color: #39373a;
+}
+
 </style>
 
-</head>
-<body>
 
+</head>
+<body>	<%
+						String admin_id = (String) session.getAttribute("admin_id");
+						//null체크
+						if (admin_id != null) { //로그인 상태
+						%>
+<!-- 네비바 -->
+	<div id="Header" class="">
+		<nav class="navbar navbar-expand-md navbar-light">
+			<a class="navbar-brand" href=""><img id="logo"
+				src="/img/logo.png"></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavDropdown">
+				<ul class="navbar-nav m-auto">
+					<li class="nav-item dropdown active"><a
+						class="nav-link dropdown-toggle" href="#"
+						id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false"> 주문관리 </a>
+						<div class="dropdown-menu"
+							aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item" href="admin_order">주문목록</a>
+						</div></li>
+				</ul>
+				<ul class="navbar-nav m-auto">
+					<li class="nav-item dropdown active"><a
+						class="nav-link dropdown-toggle" href="#"
+						id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false"> 상품관리 </a>
+						<div class="dropdown-menu"
+							aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item" href="admin_items_list">상품목록</a> <a
+								class="dropdown-item" href="admin_items_add">상품등록</a>
+						</div></li>
+				</ul>
+				<ul class="navbar-nav m-auto">
+					<li class="nav-item dropdown active"><a
+						class="nav-link dropdown-toggle" href="#"
+						id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false"> 커뮤니티 관리 </a>
+						<div class="dropdown-menu"
+							aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item" href="admin_notice">공지사항 관리</a>
+							<a class="dropdown-item" href="admin_qna">묻고답하기 관리</a> <a
+								class="dropdown-item" href="admin_shopping_review">상품평 관리</a>
+							<a class="dropdown-item" href="admin_cancel">환불 관리</a>
+							<a class="dropdown-item" href="admin_memberList">회원 목록</a>
+						</div></li>
+					<li>
+						<div class="d-flex flex-row pl-3 justify-content-center ">
+							<span class="mt-2 pr-4">관리자님 환영합니다.</span><br> <span
+								class="mt-2"><a href="adminLogoutAction">LOGOUT</a></span>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+
+	<div id="blank-box2" class="blank-box2"></div>
+
+	<!-- 공지사항 섹션 -->
+
+	<div id="content" class="d-flex flex-row bd-highlight mb-3">
+
+
+		<!-- 사이드바 -->
+		<div id="sidebar sidebar-wrapper col-md-3" class="ml-3">
+			<ul class="border border-warning sidebar-nav pr-5">
+				<li class="text-center sidebar-brand">MENU</li>
+				<li>주문 관리
+					<ul>
+						<li><a href="admin_order">주문 목록</a></li>
+					</ul>
+				</li>
+				<li>상품 관리
+					<ul>
+						<li><a href="admin_items_list">상품 목록</a></li>
+						<li><a href="admin_items_add">상품 등록</a></li>
+					</ul>
+				</li>
+				<li>커뮤니티 관리
+					<ul>
+						<li><a href="admin_notice">공지사항 관리</a></li>
+						<li><a href="admin_qna">묻고답하기 관리</a></li>
+						<li><a href="admin_shopping_review">상품평 관리</a></li>
+						<li><a href="admin_cancel">환불 관리</a></li>
+						<li><a href="admin_memberList">회원 목록</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+
+		<!-- 메인 -->
+		<div class="main-content container col-md-9">
+
+
+
+			<!-- 공지사항 검색 -->
+			<div id="noticeSearch" class="noticeSearch">
+					<select id="searchType" name="searchType">
+						<option value="title"
+							<c:if test="${page.searchType eq 'title'}">selected</c:if>>제목</option>
+						<option value="content"
+							<c:if test="${page.searchType eq 'content'}">selected</c:if>>내용</option>
+						<option value="title_content"
+							<c:if test="${page.searchType eq 'title_content'}">selected</c:if>>제목+내용</option>
+					</select>
+					 <input type="search" id="keyword" name="keyword"
+						value="${ keyword }" class="searchbar">
+					<button type="submit" id="searchButton" class="btn btn-secondary">
+						검색</button>
+			</div>
+
+<div>
+
+	
+	<%-- <c:forEach begin="1" end="${pageNum}" var="num">
+  		<span>
+  			<a href="/board/listPage?num=${num}">${num}</a>
+		</span>
+	</c:forEach> --%>
+	
+	
+
+
+			<!-- 주문관리 테이블 -->
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">번호</th>
+						<th scope="col">제목</th>
+						<th scope="col">작성일</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="dto" items='${ list }'>
+						<tr>
+							<td>${dto.notice_idx}</td>
+							<td><a
+								href="admin_notice_view?notice_idx=${ dto.notice_idx }">${dto.notice_title}</a></td>
+
+							<td><fmt:formatDate value="${ dto.notice_date }"
+									pattern="yyyy.MM.dd" /></td>
+
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			<!-- 페이지 네비게이션 -->
+
+
+			
+			
+			<div style="display: block; text-align: center;">
+			
+			
+				<c:if test="${page.prev}">
+		<span>[ <a href="/admin_notice?num=${page.startPageNum - 1}${page.searchTypeKeyword}">이전</a> ]</span>
+	</c:if>
+	
+	<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
+		<span>
+		
+			<c:if test="${select != num}">
+				<a href="/admin_notice?num=${num}${page.searchTypeKeyword}">${num}</a>
+			</c:if> 			
+			
+			<c:if test="${select == num}">
+				<b>${num}</b>
+			</c:if>
+	 			
+		</span>
+	</c:forEach>
+	
+	<c:if test="${page.next}">
+		<span>[ <a href="/admin_notice?num=${page.endPageNum + 1}${page.searchTypeKeyword}">다음</a> ]</span>
+	</c:if>
+			
+		
+				
+				
+			</div>
+			<div id="notice_write_div" class="d-flex justify-content-center">
+				<a href="admin_notice_write"><input id="notice_write"
+					type="button" value="글쓰기"></a>
+			</div>
+
+
+		</div>
+	</div>
+	</div>
+	<!-- 푸터 -->
+
+	<div class="blank-box"></div>
+
+	<div class="footer01"></div>
+	<div class="footer02">
+		<div class="address">
+			회사 : 노원이젠, 주소 : 서울시 노원구 상계동 화랑빌딩 4층, 대표 : 홍길동, <br> 고객지원 :
+			010-2222-3333, FAX : 070-888-5555, EMAIL : support@gmail.com, 사업자등록번호
+			: 100-02-00033, 통신판매업 : 제1111-경기-00000호
+		</div>
+		<div class="copy">COPYRIGHT(C) 2021 NOWON_EZEN. ALL RIGHT
+			RESERVED.</div>
+	</div>
+<script>
+
+	document.getElementById("searchButton").onclick = function () {
+		  
+		let searchType = document.getElementsByName("searchType")[0].value;
+		let keyword =  document.getElementsByName("keyword")[0].value;
+		
+		location.href = "/admin_notice?num=1" + "&searchType=" + searchType + "&keyword=" + keyword;
+	};
+</script>
+</body>
+	
+<script>
+
+	document.getElementById("searchBtn").onclick = function () {
+		  
+		let searchType = document.getElementsByName("searchType")[0].value;
+		let keyword =  document.getElementsByName("keyword")[0].value;
+		console.log("searchType : " + searchType+ "keyword : " + keyword)
+		location.href = "/admin_notice?num=1" + "&searchType=" + searchType + "&keyword=" + keyword;
+	};
+</script>
+ <%
+ } else { //로그아웃 상태
+ %>
 	<!-- 네비바 -->
 	<div id="Header" class="">
 		<nav class="navbar navbar-expand-md navbar-light">
@@ -141,8 +432,8 @@ h6 {
 						aria-haspopup="true" aria-expanded="false"> 상품관리 </a>
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item disabled" href="#">상품목록</a> <a
-								class="dropdown-item disabled" href="#">상품등록</a>
+							<a class="dropdown-item disabled" href="admin_items_list">상품목록</a> <a
+								class="dropdown-item disabled" href="admin_items_add">상품등록</a>
 						</div></li>
 				</ul>
 				<ul class="navbar-nav m-auto">
@@ -153,156 +444,49 @@ h6 {
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenuLink">
 							<a class="dropdown-item disabled" href="admin_notice">공지사항 관리</a>
-							<a class="dropdown-item disabled" href="#">묻고답하기 관리</a> <a
-								class="dropdown-item" href="#">상품평 관리</a>
+							<a class="dropdown-item disabled" href="admin_qna">묻고답하기 관리</a> <a
+								class="dropdown-item disabled" href="admin_shopping_review">상품평 관리</a>
+							<a class="dropdown-item disabled" href="admin_cancel">환불 관리</a>
 						</div></li>
 					<li>
-						<%
-						String admin_id = (String) session.getAttribute("admin_id");
-						//null체크
-						if (admin_id != null) { //로그인 상태
-						%>
-						<div class="d-flex flex-row pl-3 justify-content-center ">
-							<span class="mt-2 pr-4">관리자님 환영합니다.</span><br> <span
-								class="mt-2"><a href="adminLogoutAction">LOGOUT</a></span>
-						</div> <%
- } else { //로그아웃 상태
- %>
-						<div class="mt-2 ml-2">
-							<span class=""><a href="admin">LOGIN</a></span>
-						</div> <%
- }
- %>
 					</li>
 				</ul>
 			</div>
 		</nav>
 	</div>
 
-	<div id="blank-box2" class="blank-box2"></div>
+	<div style="margin-top:180px;" id="blank-box2" class="blank-box2"></div>
 
-	<!-- 공지사항 섹션 -->
-
-	<div id="content" class="d-flex flex-row bd-highlight mb-3">
-
-
-		<!-- 사이드바 -->
-		<div id="sidebar sidebar-wrapper col-md-3" class="ml-3">
-			<ul class="border border-warning sidebar-nav pr-5">
-				<li class="text-center sidebar-brand">MENU</li>
-				<li>주문 관리
-					<ul>
-						<li><a href="admin_order"> 주문 목록</a></li>
-					</ul>
-				</li>
-				<li>상품 관리
-					<ul>
-						<li><a href="#"> 상품 목록</a></li>
-						<li><a href="#"> 상품 등록</a></li>
-					</ul>
-				</li>
-				<li>커뮤니티 관리
-					<ul>
-						<li><a href="admin_notice"> 공지사항 관리</a></li>
-						<li><a href="#"> 묻고답하기 관리</a></li>
-						<li><a href="#"> 상품평 관리</a></li>
-					</ul>
-				</li>
-			</ul>
-		</div>
-
-		<!-- 메인 -->
-		<div class="main-content container col-md-9">
-
-			<form id="infoForm" action="admin_notice" method="get">
-				<input type="hidden" id="searchType" name="searchType"
-					value="${ searchType }">
-			</form>
-
-
-
-			<!-- 공지사항 검색 -->
-			<div id="noticeSearch" class="noticeSearch">
-					<select id="searchType" name="searchType">
-						<option value="title"
-							<c:if test="${page.searchType eq 'title'}">selected</c:if>>제목</option>
-						<option value="content"
-							<c:if test="${page.searchType eq 'content'}">selected</c:if>>내용</option>
-						<option value="title_content"
-							<c:if test="${page.searchType eq 'title_content'}">selected</c:if>>제목+내용</option>
-					</select>
-					 <input type="search" id="keyword" name="keyword"
-						value="${ keyword }" class="searchbar">
-					<button type="submit" id="searchButton" class="btn btn-secondary">
-						검색</button>
-			</div>
-
-
-
-
-			<!-- 주문관리 테이블 -->
-			<table class="table">
-				<thead>
-					<tr>
-						<th scope="col">번호</th>
-						<th scope="col">제목</th>
-						<th scope="col">작성일</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="dto" items='${ list }'>
-						<tr>
-							<td>${dto.notice_idx}</td>
-							<td><a
-								href="admin_notice_view?notice_idx=${ dto.notice_idx }">${dto.notice_title}</a></td>
-							<td><fmt:formatDate value="${dto.notice_date}"
-									pattern="yyyy-MM-dd" />
-							</td>
-
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-			<!-- 페이지 네비게이션 -->
-
-			<c:if test="${page.prev}">
-				<span>[ <a
-					href="/admin_notice?num=${page.startPageNum - 1}${page.searchTypeKeyword}">이전</a>
-					]
-				</span>
-			</c:if>
-
-			<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}"
-				var="num">
-				<span> <c:if test="${select != num}">
-						<a href="/admin_notice?num=${num}${page.searchTypeKeyword}">${num}</a>
-					</c:if> <c:if test="${select == num}">
-						<b>${num}</b>
-					</c:if>
-
-				</span>
-			</c:forEach>
-
-			<c:if test="${page.next}">
-				<span>[ <a
-					href="/admin_notice?num=${page.endPageNum + 1}${page.searchTypeKeyword}">다음</a>
-					]
-				</span>
-			</c:if>
-
-
-
-			<div id="notice_write_div" class="d-flex justify-content-center">
-				<a href="admin_notice_write"><input id="notice_write"
-					type="button" value="글쓰기"></a>
-			</div>
-
-
-		</div>
+<!-- 로그인 섹션 -->
+	<div id="content" class="d-flex flex-row bd-highlight justify-content-center align-center">
+<div class="">
+    <form action="Admin-LoginAction" method="post" name="Admin-loginAction">
+        <table class="main1" style="text-align: center;">
+          <tr>
+            <td>
+              아이디<br>
+              비밀번호
+            </td>
+            <td>
+              <input type="text" id="admin_id" name="admin_id"><br>
+              <input type="password" id="admin_pw" name="admin_pw">
+            </td>
+            </tr>
+            <tr>
+            <td colspan="2">
+              <button class="btn btn-primary" type="submit">로그인</button>
+              </td>
+          </tr>
+        </table>
+        </form>
+        <a style="text-align:center;" href="home"><button style="margin-top: 25px;" class="btn btn-secondary">사용자 페이지로</button></a>
+</div>
 	</div>
-	<!-- 푸터 -->
+	
 
-	<div class="blank-box"></div>
+<div class="blank-box"></div>
+
+	<!-- 푸터 -->
 
 	<div class="footer01"></div>
 	<div class="footer02">
@@ -314,15 +498,8 @@ h6 {
 		<div class="copy">COPYRIGHT(C) 2021 NOWON_EZEN. ALL RIGHT
 			RESERVED.</div>
 	</div>
-<script>
 
-	document.getElementById("searchButton").onclick = function () {
-		  
-		let searchType = document.getElementsByName("searchType")[0].value;
-		let keyword =  document.getElementsByName("keyword")[0].value;
-		
-		location.href = "/admin_notice?num=1" + "&searchType=" + searchType + "&keyword=" + keyword;
-	};
-</script>
-</body>
+</body> <%
+ }
+ %>
 </html>

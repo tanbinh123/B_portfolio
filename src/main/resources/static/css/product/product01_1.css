@@ -1,0 +1,73 @@
+.productSection2 {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  text-align: center;
+}
+.productSection2 div div:nth-child(1) {
+  font-size: 30px;
+  padding-bottom: 10px;
+  
+}
+.productSection2 div div:nth-child(2) {
+  color: gray;
+  font-size: 14px;
+  padding-bottom: 30px;
+}
+
+.productMain {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 15px;
+  
+  font-size: 16px;
+	  padding-bottom: 0px;
+}
+
+/* table 시작 */
+    .table {
+      width: 1010px; margin: 0 auto;
+    }
+    .table-top {
+      width: 100%; 
+      height: 54px; 
+      display: flex;
+      font-size: 15px; 
+      vertical-align: middle; 
+      line-height: 54px;
+      border-top: 3px solid rgb(92, 89, 89); 
+      border-bottom: 1px solid rgb(124, 122, 122); 
+      margin: 0 0 50px 0;
+      padding: 0;
+    } 
+    .table-top > div:nth-of-type(1) {
+      width: 200px; text-align: center; background-color: #f7f7f7;
+      font-weight: bold; color: #777777;
+      
+    }
+    .table-top > div:nth-of-type(2) {
+      width: 810px;  text-align: left; padding-left: 10px; 
+      color: #777777;
+    }
+    table tr:nth-child(1) td:nth-child(2) {
+      width: 810px; height: 54px;
+    } 
+    
+    #pd-img {
+      width: 1000px; height: 600px; margin: 0 5px;
+    }
+    .table-bottom h2 {
+      text-align: left; margin: 30px 0 5px 0; color: #252525;
+      font-size: 30px;
+    }
+    .table-bottom div:nth-of-type(2) {
+      text-align: left; font-size: 13px; color: #777777;
+      margin: 0 0 30px 0;
+    }
+    .table-bottom div:nth-of-type(3) {
+      text-align: left; font-size: 13px; color: #777777;
+      margin: 0 0 30px 0; border-bottom: 1px solid #cccccc;
+      padding: 0 0 30px 0;
+    }
+    .list {
+      width: 1010px; margin: 0 auto; padding: 0 0 80px 20px;
+    }
