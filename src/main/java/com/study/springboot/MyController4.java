@@ -116,20 +116,13 @@ public class MyController4 {
 			@RequestParam(value = "keyword",required = false, defaultValue = "") String keyword
 			) throws Exception {
 	
-		
 		Page page = new Page();
-		
 		page.setNum(num);
-		//page.setCount(service.count());		
 		page.setCount(boardService.searchCount(searchType, keyword));
-		
-		// 검색 타입과 검색어
 		page.setSearchTypeKeyword(searchType, keyword);
 		page.setSearchType(searchType);
 		page.setKeyword(keyword);
-				
 		List<QnaDto> list = null; 
-		//list = service.listPage(page.getDisplayPost(), page.getPostNum());
 		list = boardService.listPageSearch(page.getDisplayPost(), page.getPostNum(), searchType, keyword);
 		
 		model.addAttribute("qna_list", list);

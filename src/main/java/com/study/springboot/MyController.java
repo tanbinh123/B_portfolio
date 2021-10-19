@@ -847,7 +847,7 @@ public class MyController {
 		faqDto dto = new faqDto();
 		
 		dto = faqService.view(faq_idx);
-		model.addAttribute("dto", dto);
+		model.addAttribute("dto", dto); 
 
 		model.addAttribute("mainPage", "user_mypage.jsp");
 		model.addAttribute("myPage", "faq_view.jsp");
@@ -863,7 +863,8 @@ public class MyController {
 		return "users/home";
 	}
 	@RequestMapping("/user_pwModifyAction")
-	public String user_pwModifyAction(@RequestParam("member_id2") String member_id2,@RequestParam("member_id") String member_id, @RequestParam("member_pw") String member_pw, HttpServletRequest request, Model model) throws Exception {
+	public String user_pwModifyAction(@RequestParam("member_id2") String member_id2,@RequestParam("member_id") String member_id,
+			@RequestParam("member_pw") String member_pw, HttpServletRequest request, Model model) throws Exception {
 
 		memberDto dto = new memberDto();
 		dto = memberService.member_check(member_id);
@@ -889,7 +890,8 @@ public class MyController {
 
 	}
 	@RequestMapping("/user_modifyAction")
-	public String user_modifyAction(@RequestParam("member_id2") String member_id2,@RequestParam("member_id") String member_id, @RequestParam("member_pw") String member_pw, HttpServletRequest request, Model model) throws Exception {
+	public String user_modifyAction(@RequestParam("member_id2") String member_id2,@RequestParam("member_id") String member_id,
+			@RequestParam("member_pw") String member_pw, HttpServletRequest request, Model model) throws Exception {
 
 		memberDto dto = new memberDto();
 		dto = memberService.member_check(member_id);
@@ -926,7 +928,8 @@ public class MyController {
 		return "users/home";
 	}
 	@RequestMapping("/user_deleteAction")
-	public String user_deleteAction(@RequestParam("member_id2") String member_id2,@RequestParam("member_id") String member_id, @RequestParam("member_pw") String member_pw, HttpServletRequest request, Model model) throws Exception {
+	public String user_deleteAction(@RequestParam("member_id2") String member_id2,@RequestParam("member_id") String member_id,
+			@RequestParam("member_pw") String member_pw, HttpServletRequest request, Model model) throws Exception {
 
 		memberDto dto = new memberDto();
 		dto = memberService.member_check(member_id);
@@ -976,7 +979,8 @@ public class MyController {
 
 	}
 	@RequestMapping("user_delete_submit")
-	public String user_delete_submit(HttpServletRequest request, Model model, @RequestParam("member_id") String member_id, @RequestParam("member_pw") String member_pw) throws Exception{
+	public String user_delete_submit(HttpServletRequest request, Model model, @RequestParam("member_id") String member_id,
+			@RequestParam("member_pw") String member_pw) throws Exception{
 		
 		int result = memberService.user_delete_submit(member_id, member_pw);
 		request.getSession().invalidate();	

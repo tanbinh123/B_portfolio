@@ -120,26 +120,21 @@ public class MyController5 {
 	//사용자 shopping_review
 	@Autowired
 	public BoardService4 boardService;
+	
+	
 	@RequestMapping(value = "/shopping_review", method = RequestMethod.GET)
 	public String shopping_review(Model model, @RequestParam(value="num", required = false, defaultValue = "1") int num, 
 			@RequestParam(value = "searchType",required = false, defaultValue = "id") String searchType,
 			@RequestParam(value = "keyword",required = false, defaultValue = "") String keyword
 			) throws Exception {
-	
-		
 		Page page = new Page();
-		
-		page.setNum(num);
-		//page.setCount(service.count());		
+		page.setNum(num);	
 		page.setCount(boardService.searchCount(searchType, keyword));
-		
-		// 검색 타입과 검색어
 		page.setSearchTypeKeyword(searchType, keyword);
 		page.setSearchType(searchType);
 		page.setKeyword(keyword);
 				
 		List<shoppingDto> list = null; 
-		//list = service.listPage(page.getDisplayPost(), page.getPostNum());
 		list = boardService.listPageSearch(page.getDisplayPost(), page.getPostNum(), searchType, keyword);
 		
 		model.addAttribute("list", list);
@@ -244,6 +239,7 @@ public class MyController5 {
 		model.addAttribute("myPage", "shopping_review_view.jsp");
 		return "users/home";
 	}
+	
 	@RequestMapping("/shopping_review_delete")
 	public String shopping_review_delete( @RequestParam("review_idx") String review_idx,
 								HttpServletRequest request, Model model ) {
